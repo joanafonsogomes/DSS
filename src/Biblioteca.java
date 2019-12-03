@@ -37,7 +37,7 @@ public class Biblioteca{
     }
 
     public void adiciona(Media m){
-       //this.listaMediaBiblioteca.put(m.getIdMedia(),m.clone());
+       this.listaMediaBiblioteca.put(m.getIdMedia(),m.clone());
     }
     /**
      *

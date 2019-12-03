@@ -95,11 +95,9 @@ public class Utilizador {
      */
     public void addPlaylist(List<Media> lm) {
         Playlist p = new Playlist();
-        for(int i =0; i<p.getListaMediaPlaylist().size();i++) {
             for (Media m : lm) {
-                p.getListaMediaPlaylist().put(i, m);
+                p.getListaMediaPlaylist().put(m.getIdMedia(), m.clone());
             }
-        }
         throw new UnsupportedOperationException();
     }
 
