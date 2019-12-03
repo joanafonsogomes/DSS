@@ -40,17 +40,6 @@ public class Utilizador {
 
     /**
      *
-     * @param email
-     * @param nome
-     * @param passe
-     */
-    public Utilizador(String email, String nome, String passe) {
-        // TODO - implement Utilizador.Utilizador
-        throw new UnsupportedOperationException();
-    }
-
-    /**
-     *
      * Getters e Setters
      */
     public HashMap<Integer, Playlist> getListaPlaylists() {
@@ -90,35 +79,27 @@ public class Utilizador {
      * @param id_playlist
      * @param idMedia
      */
-    public void buscaPlaylist(int id_playlist, int idMedia) {
-        // TODO - implement Utilizador.buscaPlaylist
-        throw new UnsupportedOperationException();
+
+    //retorna um 1 se existir 0 se não
+    public Playlist buscaPlaylist(int id_playlist, int idMedia) throws PlaylistNaoExisteException {
+        if(listaPlaylists.containsKey(id_playlist)){
+            return listaPlaylists.get(id_playlist);
+        }
+        else throw new PlaylistNaoExisteException("A Playlist não existe no sistema");
     }
 
-    /**
-     *
-     * @param password
-     */
-    public int verificaPass(String password) {
-        // TODO - implement Utilizador.veridicaPass
-        throw new UnsupportedOperationException();
-    }
-
-    /**
-     *
-     * @param id
-     */
-    public void entraMenuUtilizador(int id) {
-        // TODO - implement Utilizador.entraMenuUtilizador
-        throw new UnsupportedOperationException();
-    }
 
     /**
      *
      * @param lm
      */
     public void addPlaylist(List<Media> lm) {
-        // TODO - implement Utilizador.addPlaylist
+        Playlist p = new Playlist();
+        for(int i =0; i<p.getListaMediaPlaylist().size();i++) {
+            for (Media m : lm) {
+                p.getListaMediaPlaylist().put(i, m);
+            }
+        }
         throw new UnsupportedOperationException();
     }
 
@@ -127,7 +108,8 @@ public class Utilizador {
      * To String
      */
     @Override
-    public String toString() {
+    public String toString(
+) {
         return "Utilizador{" +
                 "listaPlaylists=" + listaPlaylists +
                 ", nome='" + nome + '\'' +
