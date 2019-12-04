@@ -4,6 +4,7 @@ import java.awt.event.ActionListener;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
+import java.awt.event.ComponentAdapter;
 import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
@@ -14,17 +15,9 @@ import static java.lang.Thread.sleep;
 public class Main {
     private JPanel panelMain;
     private JButton button_msg;
+    private JLabel title;
 
     public Main() {
-        button_msg.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null,"Hello World");
-            }
-        });
-    }
-
-    public static void main(String[] args) {
         Media m0 = new Media();
         m0.setIdMedia(0);
         m0.setLink("seeYouAgain.wav");
@@ -67,6 +60,18 @@ public class Main {
             playMedia(playlist1.getListaMediaPlaylist().get(i).getLink());
             i++;
         }
+
+        button_msg.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(null,"Hello World");
+                playMedia("zombie.wav");
+            }
+        });
+
+    }
+
+    public static void main(String[] args) {
 
         JFrame frame = new JFrame("App");
         frame.setContentPane(new Main().panelMain);
