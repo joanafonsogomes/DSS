@@ -1,3 +1,4 @@
+import Exceptions.MediaNaoExisteException;
 import Exceptions.PlaylistNaoExisteException;
 
 import java.util.HashMap;
@@ -13,6 +14,7 @@ public class Utilizador {
     private String nome;
     private String email;
     private String pass;
+    private HashMap<Integer,Media> listaMediaUtilizadores;
 
     /**
      *
@@ -23,13 +25,15 @@ public class Utilizador {
         this.nome = "";
         this.email = "";
         this.pass = "";
+        this.listaMediaUtilizadores = new HashMap<Integer, Media>();
     }
 
-    public Utilizador(HashMap<Integer,Playlist> listaPlaylists,String nome, String email, String pass){
+    public Utilizador(HashMap<Integer,Playlist> listaPlaylists,String nome, String email, String pass, HashMap<Integer,Media>listaMediaUtilizadores){
         this.listaPlaylists= listaPlaylists;
         this.nome = nome;
         this.email = email;
         this.pass = pass;
+        this.listaMediaUtilizadores = listaMediaUtilizadores;
     }
 
     public Utilizador(Utilizador outroUtilizador) {
@@ -37,6 +41,7 @@ public class Utilizador {
         this.nome = outroUtilizador.getNome();
         this.email = outroUtilizador.getEmail();
         this.pass = outroUtilizador.getPass();
+        this.listaMediaUtilizadores = outroUtilizador.getListaMediaUtilizadores();
     }
 
     /**
@@ -75,6 +80,14 @@ public class Utilizador {
         this.pass = pass;
     }
 
+    public HashMap<Integer, Media> getListaMediaUtilizadores() {
+        return listaMediaUtilizadores;
+    }
+
+    public void setListaMediaUtilizadores(HashMap<Integer, Media> listaMediaUtilizadores) {
+        this.listaMediaUtilizadores = listaMediaUtilizadores;
+    }
+
     /**
      *
      * @param id_playlist
@@ -104,6 +117,14 @@ public class Utilizador {
 
     /**
      *
+     * @param cat_name
+     */
+    public void alterarCat(int idMedia,String cat_name) throws MediaNaoExisteException {
+        if(listaMediaUtilizadores)
+    }
+
+    /**
+     *
      * To String
      */
     @Override
@@ -124,5 +145,7 @@ public class Utilizador {
     public Utilizador clone() {
         return new Utilizador(this);
     }
+
+
 
 }

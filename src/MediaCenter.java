@@ -116,14 +116,7 @@ public class MediaCenter {
 
 
 
-    /**
-     *
-     * @param media_name
-     */
-    public void alterarCat(String media_name) {
-        // TODO - implement MediaCenter.alterarCat
-        throw new UnsupportedOperationException();
-    }
+
 
     /**
      *
