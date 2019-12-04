@@ -7,6 +7,10 @@ public class Administrador extends Utilizador {
     private String password;
     private ArrayList<Utilizador> utilizadores;
 
+    public Administrador() {
+        super(listaPlaylists, email, nome, password);
+    }
+
     @Override
     public String getEmail() {
         return email;

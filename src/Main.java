@@ -4,11 +4,8 @@ import java.awt.event.ActionListener;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
-import java.awt.event.ComponentAdapter;
 import java.io.File;
 import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
 
 import static java.lang.Thread.sleep;
 
@@ -46,7 +43,7 @@ public class Main {
         pl2.put(2,m2);
         playlist2.setListaMediaPlaylist(pl2);
 
-        Utilizador user1 = new Utilizador();
+        Utilizador user1 = new Utilizador(listaPlaylists, email, nome, password);
         user1.setNome("Pedro Gomes");
         user1.setEmail("pedrogomes2000@gmail.com");
         user1.setPass("12345");

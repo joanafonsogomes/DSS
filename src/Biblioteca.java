@@ -11,17 +11,17 @@ public class Biblioteca{
      * Variáveis de instância
      */
     //private Collection<Media> listaMediaBiblioteca;
-    private HashMap<Integer,Media> listaMediaBiblioteca;
+    private HashMap<String,Media> listaMediaBiblioteca;
 
     /**
      *
      * Construtores
      */
     public Biblioteca() {
-        this.listaMediaBiblioteca = new HashMap<Integer,Media>();
+        this.listaMediaBiblioteca = new HashMap<String,Media>();
     }
 
-    public Biblioteca(HashMap<Integer,Media> listaMediaBiblioteca){
+    public Biblioteca(HashMap<String,Media> listaMediaBiblioteca){
         this.listaMediaBiblioteca = listaMediaBiblioteca;
     }
 
@@ -32,11 +32,11 @@ public class Biblioteca{
      *
      * Getters e Setters
      */
-    public HashMap<Integer, Media> getListaMediaBiblioteca() {
+    public HashMap<String, Media> getListaMediaBiblioteca() {
         return listaMediaBiblioteca;
     }
 
-    public void setListaMediaBiblioteca(HashMap<Integer, Media> listaMediaBiblioteca) {
+    public void setListaMediaBiblioteca(HashMap<String, Media> listaMediaBiblioteca) {
         this.listaMediaBiblioteca = listaMediaBiblioteca;
     }
 

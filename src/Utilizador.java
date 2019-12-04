@@ -19,8 +19,12 @@ public class Utilizador {
     /**
      *
      * Construtores
+     * @param listaPlaylists
+     * @param email
+     * @param nome
+     * @param password
      */
-    public Utilizador() {
+    public Utilizador(HashMap<Integer, Playlist> listaPlaylists, String email, String nome, String password) {
         this.listaPlaylists = new HashMap<Integer,Playlist>();
         this.nome = "";
         this.email = "";
@@ -120,7 +124,7 @@ public class Utilizador {
      * @param cat_name
      */
     public void alterarCat(int idMedia,String cat_name) throws MediaNaoExisteException {
-        if(listaMediaUtilizadores)
+
     }
 
     /**

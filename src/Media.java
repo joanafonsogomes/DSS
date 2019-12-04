@@ -6,7 +6,7 @@ public class Media {
      *
      * Variáveis de instância
      */
-    private int idMedia;
+    private String idMedia;
     private String cat;
     private Reprodutor rep;
     //para um primeiro teste:
@@ -17,15 +17,15 @@ public class Media {
      *
      * Construtores
      */
-    public Media() {
-        this.idMedia = 0;
+    public Media(String idMedia, String artista) {
+        this.idMedia = idMedia;
         this.cat = "";
         this.rep = new Reprodutor();
         this.link = "";
-        this.artista = "";
+        this.artista = artista;
     }
 
-    public Media(int idMedia ,String cat,Reprodutor rep, String link, String artista){
+    public Media(String idMedia ,String cat,Reprodutor rep, String link, String artista){
         this.idMedia= idMedia;
         this.cat= cat; //clone
         this.rep= rep; //clone
@@ -45,11 +45,11 @@ public class Media {
      *
      * Getters e Setters
      */
-    public int getIdMedia() {
+    public String getIdMedia() {
         return idMedia;
     }
 
-    public void setIdMedia(int idMedia) {
+    public void setIdMedia(String idMedia) {
         this.idMedia = idMedia;
     }
 

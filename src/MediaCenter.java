@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -78,6 +79,20 @@ public class MediaCenter {
         else throw new ContaNaoExisteException("A conta inserida não existe no sistema");
     }
 
+    /**
+     * Elimina media para um determinado utilizador e se necessário da biblioteca
+     */
+    public void eliminaMedia(String idUtilizador, int idMusica ){
+        if (utilizadores.containsKey(idUtilizador)) {
+            utilizadores.get(idUtilizador).getListaMediaUtilizadores().remove(idMusica);
+            int x=0;
+            for(String a : utilizadores.keySet()){
+                if(utilizadores.get(a).getListaMediaUtilizadores().containsKey(idMusica)) x++;
+            }
+            if(x==0) biblioteca.getListaMediaBiblioteca().remove(idMusica);
+        }
+    }
+
 
     /**
      *
@@ -96,22 +111,19 @@ public class MediaCenter {
     }
 
 
-    /**
-     *
-     * @param m
-     */
-    public void updateMedia(Media m) {
-        // TODO - implement MediaCenter.updateMedia
-        throw new UnsupportedOperationException();
-    }
 
     /**
      *
      * @param listaMedia
      */
-    public void upload(List<Media> listaMedia) {
-        // TODO - implement MediaCenter.upload
-        throw new UnsupportedOperationException();
+    public void addMedia(ArrayList<String> listaMedia, String utilizador) {
+        for(String media : listaMedia){
+            if( !(biblioteca.getListaMediaBiblioteca().containsKey(media)) ){
+                Media m = new Media(media,media); //rever esta parte
+                //sera necessario confirmar se já existe? porque o put mete caso nao haja, se houver faz replace
+                biblioteca.getListaMediaBiblioteca().put(media,m);
+            }
+        }
     }
 
 
