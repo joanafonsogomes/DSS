@@ -14,7 +14,7 @@ public class Utilizador {
     private String nome;
     private String email;
     private String pass;
-    private HashMap<Integer,Media> listaMediaUtilizadores;
+    private HashMap<String,Media> listaMediaUtilizadores;
 
     /**
      *
@@ -29,10 +29,10 @@ public class Utilizador {
         this.nome = "";
         this.email = "";
         this.pass = "";
-        this.listaMediaUtilizadores = new HashMap<Integer, Media>();
+        this.listaMediaUtilizadores = new HashMap<String, Media>();
     }
 
-    public Utilizador(HashMap<Integer,Playlist> listaPlaylists,String nome, String email, String pass, HashMap<Integer,Media>listaMediaUtilizadores){
+    public Utilizador(HashMap<Integer,Playlist> listaPlaylists,String nome, String email, String pass, HashMap<String,Media>listaMediaUtilizadores){
         this.listaPlaylists= listaPlaylists;
         this.nome = nome;
         this.email = email;
@@ -84,11 +84,11 @@ public class Utilizador {
         this.pass = pass;
     }
 
-    public HashMap<Integer, Media> getListaMediaUtilizadores() {
+    public HashMap<String, Media> getListaMediaUtilizadores() {
         return listaMediaUtilizadores;
     }
 
-    public void setListaMediaUtilizadores(HashMap<Integer, Media> listaMediaUtilizadores) {
+    public void setListaMediaUtilizadores(HashMap<String, Media> listaMediaUtilizadores) {
         this.listaMediaUtilizadores = listaMediaUtilizadores;
     }
 

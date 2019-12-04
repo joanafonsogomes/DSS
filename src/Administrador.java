@@ -1,22 +1,29 @@
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class Administrador extends Utilizador {
+public class Administrador{
 
     private String email;
     private String password;
     private ArrayList<Utilizador> utilizadores;
 
-    public Administrador() {
-        super(listaPlaylists, email, nome, password);
+    public Administrador(){
+        this.email="";
+        this.password="";
+        this.utilizadores = new ArrayList<Utilizador>();
     }
 
-    @Override
+    public Administrador(String email,String password,ArrayList<Utilizador> utilizadores){
+        this.email = email;
+        this.password = password;
+        this.utilizadores = utilizadores;
+    }
+
+
     public String getEmail() {
         return email;
     }
 
-    @Override
     public void setEmail(String email) {
         this.email = email;
     }
