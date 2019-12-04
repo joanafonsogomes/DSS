@@ -1,13 +1,15 @@
+package DAO;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class Connect {
 
-    private static final String USERNAME = "INSERT USERNAME";
-    private static final String PASSWORD = "INSERT PASSWORD";
+    private static final String USERNAME = "catarina";
+    private static final String PASSWORD = "123456789";
     private static final String URL = "localhost";
-    private static final String SCHEMA = "SGT_DB";
+    private static final String SCHEMA = "dssF";
 
     /**
      * Only required once

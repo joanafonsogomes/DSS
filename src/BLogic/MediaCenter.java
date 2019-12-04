@@ -1,7 +1,8 @@
+package BLogic;
+
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+
 import Exceptions.ContaNaoExisteException;
 import Exceptions.PassErradaException;
 
@@ -16,7 +17,7 @@ public class MediaCenter {
     private Administrador admin;
 
     public void logout() {
-        // TODO - implement MediaCenter.logout
+        // TODO - implement BLogic.MediaCenter.logout
         throw new UnsupportedOperationException();
     }
 
@@ -29,7 +30,7 @@ public class MediaCenter {
         this.utilizadores = new HashMap<String,Utilizador>();
     }
 
-    public MediaCenter(Biblioteca biblioteca,HashMap<String,Utilizador> utilizadores){
+    public MediaCenter(Biblioteca biblioteca, HashMap<String,Utilizador> utilizadores){
         this.biblioteca= biblioteca;
         this.utilizadores = utilizadores; //clone
     }
@@ -61,7 +62,7 @@ public class MediaCenter {
     }
 
     //apenas o admin consegue criar conta
-    public void criarConta(String email,String nome,String password,HashMap<Integer,Playlist> listaPlaylists){
+    public void criarConta(String email,String nome,String password,HashMap<Integer, Playlist> listaPlaylists){
         if(!utilizadores.containsKey(email)) {
             Utilizador u = new Utilizador(listaPlaylists, email, nome, password);
             utilizadores.put(email,u.clone());
@@ -135,7 +136,7 @@ public class MediaCenter {
      * @param cat_name
      */
     public void categoriaMedia(String cat_name) {
-        // TODO - implement MediaCenter.categoriaMedia
+        // TODO - implement BLogic.MediaCenter.categoriaMedia
         throw new UnsupportedOperationException();
     }
 
@@ -144,7 +145,7 @@ public class MediaCenter {
      * @param tipo_name
      */
     public int validaTipo(String tipo_name) {
-        // TODO - implement MediaCenter.validaTipo
+        // TODO - implement BLogic.MediaCenter.validaTipo
         throw new UnsupportedOperationException();
     }
 
@@ -153,7 +154,7 @@ public class MediaCenter {
      * @param artista_name
      */
     public String artistaMedia(String artista_name) {
-        // TODO - implement MediaCenter.artistaMedia
+        // TODO - implement BLogic.MediaCenter.artistaMedia
         throw new UnsupportedOperationException();
     }
 
@@ -162,12 +163,12 @@ public class MediaCenter {
      * @param escolha
      */
     public void acedePlaylist(int escolha) {
-        // TODO - implement MediaCenter.acedePlaylist
+        // TODO - implement BLogic.MediaCenter.acedePlaylist
         throw new UnsupportedOperationException();
     }
 
     public void randomMedia() {
-        // TODO - implement MediaCenter.randomMedia
+        // TODO - implement BLogic.MediaCenter.randomMedia
         throw new UnsupportedOperationException();
     }
 
@@ -176,12 +177,12 @@ public class MediaCenter {
      * @param cat_name
      */
     public String findCategoria(String cat_name) {
-        // TODO - implement MediaCenter.findCategoria
+        // TODO - implement BLogic.MediaCenter.findCategoria
         throw new UnsupportedOperationException();
     }
 
     public void entrarComoConvidado() {
-        // TODO - implement MediaCenter.entrarComoConvidado
+        // TODO - implement BLogic.MediaCenter.entrarComoConvidado
         throw new UnsupportedOperationException();
     }
 
@@ -191,7 +192,7 @@ public class MediaCenter {
      */
     @Override
     public String toString() {
-        return "MediaCenter{" +
+        return "BLogic.MediaCenter{" +
                 "biblioteca=" + biblioteca +
                 ", utilizadores=" + utilizadores +
                 '}';

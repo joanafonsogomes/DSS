@@ -1,3 +1,5 @@
+package BLogic;
+
 import Exceptions.ArtistaNaoExisteException;
 import Exceptions.CategoriaNaoExisteException;
 import Exceptions.MediaNaoExisteException;
@@ -10,7 +12,7 @@ public class Biblioteca{
      *
      * Variáveis de instância
      */
-    //private Collection<Media> listaMediaBiblioteca;
+    //private Collection<BLogic.Media> listaMediaBiblioteca;
     private HashMap<String,Media> listaMediaBiblioteca;
 
     /**
@@ -74,7 +76,7 @@ public class Biblioteca{
     public Media findMedia(int media_name) throws MediaNaoExisteException {
             if(listaMediaBiblioteca.containsKey(media_name))
                 return listaMediaBiblioteca.get(media_name);
-            else throw new MediaNaoExisteException("Media não existe no sistema");
+            else throw new MediaNaoExisteException("BLogic.Media não existe no sistema");
     }
 
     /**
@@ -85,7 +87,7 @@ public class Biblioteca{
         if(listaMediaBiblioteca.containsKey(media_name)){
             listaMediaBiblioteca.remove(media_name);
         }
-        else throw new MediaNaoExisteException("Media não existe no sistema");
+        else throw new MediaNaoExisteException("BLogic.Media não existe no sistema");
     }
 
     /**
@@ -105,11 +107,11 @@ public class Biblioteca{
         if(listaMediaBiblioteca.containsKey(m.getIdMedia())){
             listaMediaBiblioteca.put(m.getIdMedia(),m);
         }
-        else throw new MediaNaoExisteException("Media não existe no sistema");
+        else throw new MediaNaoExisteException("BLogic.Media não existe no sistema");
     }
 
     public List<Media> makeTempL() {
-        // TODO - implement Biblioteca.makeTempL
+        // TODO - implement BLogic.Biblioteca.makeTempL
         throw new UnsupportedOperationException();
     }
 
@@ -119,7 +121,7 @@ public class Biblioteca{
      */
     @Override
     public String toString() {
-        return "Biblioteca{" +
+        return "BLogic.Biblioteca{" +
                 "listaMediaBiblioteca=" + listaMediaBiblioteca +
                 '}';
     }

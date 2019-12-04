@@ -1,3 +1,5 @@
+package BLogic;
+
 import java.util.Objects;
 
 public class Media {
@@ -124,7 +126,7 @@ public class Media {
      */
     @Override
     public String toString() {
-        return "Media{" +
+        return "BLogic.Media{" +
                 "idMedia=" + idMedia +
                 ", cat='" + cat + '\'' +
                 ", rep=" + rep +

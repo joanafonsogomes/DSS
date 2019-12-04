@@ -15,39 +15,40 @@ public class Main {
     private JLabel title;
 
     public Main() {
-        Media m0 = new Media();
+       /*
+        BLogic.Media m0 = new BLogic.Media();
         m0.setIdMedia(0);
         m0.setLink("seeYouAgain.wav");
-        Media m1 = new Media();
+        BLogic.Media m1 = new BLogic.Media();
         m1.setIdMedia(1);
         m1.setLink("zombie.wav");
-        Media m2 = new Media();
+        BLogic.Media m2 = new BLogic.Media();
         m2.setIdMedia(2);
         m2.setLink("useSomebody.wav");
 
-        Biblioteca biblioteca = new Biblioteca();
-        HashMap<Integer,Media> biblio = new HashMap<Integer,Media>();
+        BLogic.Biblioteca biblioteca = new BLogic.Biblioteca();
+        HashMap<Integer,BLogic.Media> biblio = new HashMap<Integer,BLogic.Media>();
         biblio.put(0,m0);
         biblio.put(1,m1);
         biblio.put(2,m2);
         biblioteca.setListaMediaBiblioteca(biblio);
 
-        Playlist playlist1 = new Playlist();
-        HashMap<Integer,Media> pl1 = playlist1.getListaMediaPlaylist();
+        BLogic.Playlist playlist1 = new BLogic.Playlist();
+        HashMap<Integer,BLogic.Media> pl1 = playlist1.getListaMediaPlaylist();
         pl1.put(0,m0);
         pl1.put(1,m1);
         playlist1.setListaMediaPlaylist(pl1);
 
-        Playlist playlist2 = new Playlist();
-        HashMap<Integer,Media> pl2 = playlist1.getListaMediaPlaylist();
+        BLogic.Playlist playlist2 = new BLogic.Playlist();
+        HashMap<Integer,BLogic.Media> pl2 = playlist1.getListaMediaPlaylist();
         pl2.put(2,m2);
         playlist2.setListaMediaPlaylist(pl2);
 
-        Utilizador user1 = new Utilizador(listaPlaylists, email, nome, password);
+        BLogic.Utilizador user1 = new BLogic.Utilizador(listaPlaylists, email, nome, password);
         user1.setNome("Pedro Gomes");
         user1.setEmail("pedrogomes2000@gmail.com");
         user1.setPass("12345");
-        HashMap<Integer,Playlist> lp1 = user1.getListaPlaylists();
+        HashMap<Integer,BLogic.Playlist> lp1 = user1.getListaPlaylists();
         lp1.put(1,playlist1);
         lp1.put(2,playlist2);
         user1.setListaPlaylists(lp1);
@@ -110,6 +111,9 @@ public class Main {
             e.printStackTrace();
         }
 
+    }
+
+        */
     }
 
 }

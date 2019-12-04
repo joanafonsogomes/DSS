@@ -1,3 +1,5 @@
+package BLogic;
+
 import Exceptions.MediaNaoExisteException;
 
 import java.util.*;
@@ -8,9 +10,9 @@ public class Playlist {
      *
      * Variáveis de instância
      */
-    private HashMap<String,Media> listaMediaPlaylist;
+    private HashMap<String, Media> listaMediaPlaylist;
     private int idPlaylist;
-    //private Media atual;
+    //private BLogic.Media atual;
 
     /**
      *
@@ -21,7 +23,7 @@ public class Playlist {
         this.idPlaylist = 0;
     }
 
-    public Playlist(HashMap<String,Media> listaMediaPlaylist,int idPlaylist){
+    public Playlist(HashMap<String, Media> listaMediaPlaylist, int idPlaylist){
         this.listaMediaPlaylist= listaMediaPlaylist;
         this.idPlaylist = idPlaylist; //clone
     }
@@ -59,7 +61,7 @@ public class Playlist {
         if(listaMediaPlaylist.containsKey(idMedia)){
             return listaMediaPlaylist.get(idMedia);
         }
-        else throw new MediaNaoExisteException("Media não se encontra no sistema");
+        else throw new MediaNaoExisteException("BLogic.Media não se encontra no sistema");
     }
 
     /**
@@ -70,7 +72,7 @@ public class Playlist {
         if(listaMediaPlaylist.containsKey(idMedia)){
             listaMediaPlaylist.remove(idMedia);
         }
-        throw new MediaNaoExisteException("Media não se encontra no sistema");
+        throw new MediaNaoExisteException("BLogic.Media não se encontra no sistema");
     }
 
     /**
@@ -79,7 +81,7 @@ public class Playlist {
      */
     @Override
     public String toString() {
-        return "Playlist{" +
+        return "BLogic.Playlist{" +
                 "listaMediaPlaylist=" + listaMediaPlaylist +
                 ", idPlaylist=" + idPlaylist +
                 '}';
