@@ -1,3 +1,5 @@
+import Exceptions.MediaNaoExisteException;
+
 import java.util.*;
 
 public class Playlist {
@@ -53,16 +55,22 @@ public class Playlist {
      *
      * @param idMedia
      */
-    public void findMedia(int idMedia) {
+    public Media findMedia(int idMedia) throws MediaNaoExisteException {
+        if(listaMediaPlaylist.containsKey(idMedia)){
+            return listaMediaPlaylist.get(idMedia);
+        }
+        else throw new MediaNaoExisteException("Media não se encontra no sistema");
     }
 
     /**
      *
      * @param idMedia
      */
-    public void remove(int idMedia) {
-        // TODO - implement Playlist.remove
-        throw new UnsupportedOperationException();
+    public void remove(int idMedia) throws MediaNaoExisteException{
+        if(listaMediaPlaylist.containsKey(idMedia)){
+            listaMediaPlaylist.remove(idMedia);
+        }
+        throw new MediaNaoExisteException("Media não se encontra no sistema");
     }
 
     /**

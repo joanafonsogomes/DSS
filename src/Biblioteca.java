@@ -1,3 +1,7 @@
+import Exceptions.ArtistaNaoExisteException;
+import Exceptions.CategoriaNaoExisteException;
+import Exceptions.MediaNaoExisteException;
+
 import java.util.*;
 
 public class Biblioteca{
@@ -43,54 +47,65 @@ public class Biblioteca{
      *
      * @param artista_nome
      */
-    public Media getMediaPorArtista(String artista_nome) {
-        // TODO - implement Biblioteca.getMediaPorArtista
-        throw new UnsupportedOperationException();
+    public Media getMediaPorArtista(String artista_nome) throws ArtistaNaoExisteException {
+        for(Media m : listaMediaBiblioteca.values()){
+            if(m.getArtista().equals(artista_nome))
+                return m;
+        }
+        throw new ArtistaNaoExisteException("O Artista não existe no sistema");
     }
 
     /**
      *
      * @param cat_name
      */
-    public Media getMediaPorCat(String cat_name) {
-        // TODO - implement Biblioteca.getMediaPorCat
-        throw new UnsupportedOperationException();
+    public Media getMediaPorCat(String cat_name) throws CategoriaNaoExisteException {
+        for(Media m : listaMediaBiblioteca.values()){
+            if(m.getCat().equals(cat_name))
+                return m;
+        }
+        throw new CategoriaNaoExisteException("A categria não existe no sistema");
     }
 
     /**
      *
      * @param media_name
      */
-    public Media findMedia(int media_name) {
-        // TODO - implement Biblioteca.findMedia
-        throw new UnsupportedOperationException();
+    public Media findMedia(int media_name) throws MediaNaoExisteException {
+            if(listaMediaBiblioteca.containsKey(media_name))
+                return listaMediaBiblioteca.get(media_name);
+            else throw new MediaNaoExisteException("Media não existe no sistema");
     }
 
     /**
      *
      * @param media_name
      */
-    public void removeMedia(int media_name) {
-        // TODO - implement Biblioteca.removeMedia
-        throw new UnsupportedOperationException();
+    public void removeMedia(int media_name) throws MediaNaoExisteException {
+        if(listaMediaBiblioteca.containsKey(media_name)){
+            listaMediaBiblioteca.remove(media_name);
+        }
+        else throw new MediaNaoExisteException("Media não existe no sistema");
     }
 
     /**
      *
      * @param idMedia
      */
-    public void verificaConteudo(int idMedia) {
-        // TODO - implement Biblioteca.verificaConteudo
-        throw new UnsupportedOperationException();
+    //retorna 1 caso o conteudo já exita, 0 caso contrário
+    public boolean verificaConteudo(int idMedia) {
+        return (listaMediaBiblioteca.containsKey(idMedia));
     }
 
     /**
      *
      * @param m
      */
-    public void updateMedia(Media m) {
-        // TODO - implement Biblioteca.updateMedia
-        throw new UnsupportedOperationException();
+    public void updateMedia(Media m) throws MediaNaoExisteException {
+        if(listaMediaBiblioteca.containsKey(m.getIdMedia())){
+            listaMediaBiblioteca.put(m.getIdMedia(),m);
+        }
+        else throw new MediaNaoExisteException("Media não existe no sistema");
     }
 
     public List<Media> makeTempL() {

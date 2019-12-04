@@ -1,6 +1,8 @@
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import Exceptions.ContaNaoExisteException;
+import Exceptions.PassErradaException;
 
 public class MediaCenter {
 
@@ -9,7 +11,8 @@ public class MediaCenter {
      * Variáveis de instância
      */
     private Biblioteca biblioteca;
-    private Map<String,Utilizador> utilizadores;
+    private HashMap<String,Utilizador> utilizadores;
+    private Administrador admin;
 
     public void logout() {
         // TODO - implement MediaCenter.logout
@@ -25,7 +28,7 @@ public class MediaCenter {
         this.utilizadores = new HashMap<String,Utilizador>();
     }
 
-    public MediaCenter(Biblioteca biblioteca,Map<String,Utilizador> utilizadores){
+    public MediaCenter(Biblioteca biblioteca,HashMap<String,Utilizador> utilizadores){
         this.biblioteca= biblioteca;
         this.utilizadores = utilizadores; //clone
     }
@@ -48,73 +51,50 @@ public class MediaCenter {
         this.biblioteca = biblioteca;
     }
 
-    public Map<String, Utilizador> getUtilizadores() {
+    public HashMap<String, Utilizador> getUtilizadores() {
         return utilizadores;
     }
 
-    public void setUtilizadores(Map<String, Utilizador> utilizadores) {
+    public void setUtilizadores(HashMap<String, Utilizador> utilizadores) {
         this.utilizadores = utilizadores;
     }
 
+    //apenas o admin consegue criar conta
+    public void criarConta(String email,String nome,String password,HashMap<Integer,Playlist> listaPlaylists){
+        if(!utilizadores.containsKey(email)) {
+            Utilizador u = new Utilizador(listaPlaylists, email, nome, password);
+            utilizadores.put(email,u.clone());
+        }
+    }
+
+    /**
+     *apenas o admin consegue elimar conta
+     * @param email
+     */
+    public void pretendeEliminar(String email) throws ContaNaoExisteException {
+        if(utilizadores.containsKey(email)){
+            utilizadores.remove(email);
+        }
+        else throw new ContaNaoExisteException("A conta inserida não existe no sistema");
+    }
+
+
     /**
      *
      * @param email
      * @param nome
      * @param pass
      */
-    public Utilizador newUtilizador(String email, String nome, String pass) {
-        // TODO - implement MediaCenter.newUtilizador
-        throw new UnsupportedOperationException();
+    public int validaRegisto(String email, String nome, String pass) throws ContaNaoExisteException,PassErradaException{
+        int r=0;
+        if(utilizadores.containsKey(email)){
+            if(utilizadores.get(email).getPass().equals(pass)) r=1;
+            else throw new PassErradaException("A password inserida não corresponde ao email de utilizador");
+        }
+        else throw new ContaNaoExisteException("A conta inserida não existe no sistema");
+        return r;
     }
 
-    /**
-     *
-     * @param email
-     * @param nome
-     * @param pass
-     */
-    public void validaRegisto(String email, String nome, String pass) {
-        // TODO - implement MediaCenter.validaRegisto
-        throw new UnsupportedOperationException();
-    }
-
-    /**
-     *
-     * @param n
-     */
-    public void pretendeAltNome(String n) {
-        // TODO - implement MediaCenter.pretendeAltNome
-        throw new UnsupportedOperationException();
-    }
-
-    /**
-     *
-     * @param p
-     */
-    public void pretendeAltPasse(String p) {
-        // TODO - implement MediaCenter.pretendeAltPasse
-        throw new UnsupportedOperationException();
-    }
-
-    /**
-     *
-     * @param id_media
-     * @param id_playlist
-     */
-    public void removerMedia(int id_media, int id_playlist) {
-        // TODO - implement MediaCenter.removerMedia
-        throw new UnsupportedOperationException();
-    }
-
-    /**
-     *
-     * @param email
-     * @param password
-     */
-    public void insere(String email, String password) {
-        // TODO - implement MediaCenter.insere
-        throw new UnsupportedOperationException();
-    }
 
     /**
      *
@@ -134,14 +114,7 @@ public class MediaCenter {
         throw new UnsupportedOperationException();
     }
 
-    /**
-     *
-     * @param email
-     */
-    public void pretendeEliminar(String email) {
-        // TODO - implement MediaCenter.pretendeEliminar
-        throw new UnsupportedOperationException();
-    }
+
 
     /**
      *

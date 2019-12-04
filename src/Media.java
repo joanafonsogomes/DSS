@@ -11,6 +11,7 @@ public class Media {
     private Reprodutor rep;
     //para um primeiro teste:
     private String link;
+    private String artista;
 
     /**
      *
@@ -21,13 +22,15 @@ public class Media {
         this.cat = "";
         this.rep = new Reprodutor();
         this.link = "";
+        this.artista = "";
     }
 
-    public Media(int idMedia ,String cat,Reprodutor rep, String link){
+    public Media(int idMedia ,String cat,Reprodutor rep, String link, String artista){
         this.idMedia= idMedia;
         this.cat= cat; //clone
         this.rep= rep; //clone
         this.link = link;
+        this.artista = artista;
     }
 
     public Media(Media outraMedia) {
@@ -35,6 +38,7 @@ public class Media {
         this.cat = outraMedia.getCat();
         this.rep = outraMedia.getRep();
         this.link = outraMedia.getLink();
+        this.artista = outraMedia.getArtista();
     }
 
     /**
@@ -73,6 +77,14 @@ public class Media {
         this.link = link;
     }
 
+    public String getArtista() {
+        return artista;
+    }
+
+    public void setArtista(String artista) {
+        this.artista = artista;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -81,34 +93,29 @@ public class Media {
         return idMedia == media.idMedia &&
                 Objects.equals(cat, media.cat) &&
                 Objects.equals(rep, media.rep) &&
-                Objects.equals(link, media.link);
+                Objects.equals(link, media.link) &&
+                Objects.equals(artista, media.artista);
     }
 
-    /**
-     *
-     * @param cat_name
-     */
-    public void alteraCategoria(String cat_name) {
-        // TODO - implement Media.alteraCategoria
-        throw new UnsupportedOperationException();
+    @Override
+    public int hashCode() {
+        return Objects.hash(idMedia, cat, rep, link, artista);
     }
 
     /**
      *
      * @param artista_name
      */
-    public void comparaArtista(String artista_name) {
-        // TODO - implement Media.comparaArtista
-        throw new UnsupportedOperationException();
+    public boolean comparaArtista(String artista_name) {
+        return (this.artista.equals(artista_name));
     }
 
     /**
      *
      * @param cat_name
      */
-    public void comparaCategoria(String cat_name) {
-        // TODO - implement Media.comparaCategoria
-        throw new UnsupportedOperationException();
+    public boolean comparaCategoria(String cat_name) {
+        return (this.artista.equals(cat_name));
     }
 
     /**

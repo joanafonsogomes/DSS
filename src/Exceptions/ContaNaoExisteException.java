@@ -1,4 +1,8 @@
 package Exceptions;
 
-public class ContaNaoExisteException {
+public class ContaNaoExisteException extends Exception {
+
+    public ContaNaoExisteException(String mario){
+        super(mario);
+    }
 }

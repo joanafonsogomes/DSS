@@ -1,4 +1,8 @@
 package Exceptions;
 
-public class PassErradaException {
+public class PassErradaException extends Exception {
+
+    public PassErradaException(String mario){
+        super(mario);
+    }
 }
