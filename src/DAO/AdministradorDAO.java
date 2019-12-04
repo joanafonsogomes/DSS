@@ -16,7 +16,7 @@ public class AdministradorDAO implements Map<String, Administrador> {
     public boolean isEmpty() {
         return false;
     }
-
+//olllaaa
     @Override
     public boolean containsKey(Object o) {
         return false;
