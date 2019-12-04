@@ -1,3 +1,5 @@
+import Exceptions.MediaJaExisteException;
+
 import java.util.ArrayList;
 
 public class MediaCenterController {
@@ -8,8 +10,8 @@ public class MediaCenterController {
        mC.eliminaMedia(idUtilizador,idMedia);
    }
 
-   public void upload (ArrayList<String> mediaUpload, String emailUtilizador){
-       mC.addMedia(mediaUpload,emailUtilizador);
+   public void upload (String mediaUpload,String artista, String emailUtilizador) throws MediaJaExisteException {
+       mC.addMedia(mediaUpload,artista,emailUtilizador);
    }
 
 }

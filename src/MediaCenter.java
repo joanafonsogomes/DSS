@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 import Exceptions.ContaNaoExisteException;
 import Exceptions.PassErradaException;
+import Exceptions.MediaJaExisteException;
 
 public class MediaCenter {
 
@@ -112,22 +113,15 @@ public class MediaCenter {
 
 
 
-    /**
-     *
-     * @param listaMedia
-     */
-    public void addMedia(ArrayList<String> listaMedia, String utilizador) {
-        for(String media : listaMedia){
-            if( !(biblioteca.getListaMediaBiblioteca().containsKey(media)) ){
-                Media m = new Media(media,media); //rever esta parte
-                //sera necessario confirmar se já existe? porque o put mete caso nao haja, se houver faz replace
-                biblioteca.getListaMediaBiblioteca().put(media,m);
-            }
+
+    public void addMedia(String media, String artista,String utilizador) throws MediaJaExisteException{
+        if( !(biblioteca.getListaMediaBiblioteca().containsKey(media)) ) {
+            Media m = new Media(media,artista);
+            biblioteca.getListaMediaBiblioteca().put(media,m);
+            utilizadores.get(utilizador).getListaMediaUtilizadores().put(media,m);
         }
+        else throw new MediaJaExisteException("A media já existe no sistema");
     }
-
-
-
 
 
     /**
