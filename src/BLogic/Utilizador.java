@@ -1,3 +1,5 @@
+package BLogic;
+
 import Exceptions.MediaNaoExisteException;
 import Exceptions.PlaylistNaoExisteException;
 
@@ -10,11 +12,11 @@ public class Utilizador {
      *
      * Variáveis de instância
      */
-    private HashMap<Integer,Playlist> listaPlaylists;
+    private HashMap<Integer, Playlist> listaPlaylists;
     private String nome;
     private String email;
     private String pass;
-    private HashMap<String,Media> listaMediaUtilizadores;
+    private HashMap<String, Media> listaMediaUtilizadores;
 
     /**
      *
@@ -25,14 +27,14 @@ public class Utilizador {
      * @param password
      */
     public Utilizador(HashMap<Integer, Playlist> listaPlaylists, String email, String nome, String password) {
-        this.listaPlaylists = new HashMap<Integer,Playlist>();
+        this.listaPlaylists = new HashMap<Integer, Playlist>();
         this.nome = "";
         this.email = "";
         this.pass = "";
         this.listaMediaUtilizadores = new HashMap<String, Media>();
     }
 
-    public Utilizador(HashMap<Integer,Playlist> listaPlaylists,String nome, String email, String pass, HashMap<String,Media>listaMediaUtilizadores){
+    public Utilizador(HashMap<Integer, Playlist> listaPlaylists, String nome, String email, String pass, HashMap<String, Media>listaMediaUtilizadores){
         this.listaPlaylists= listaPlaylists;
         this.nome = nome;
         this.email = email;
@@ -103,7 +105,7 @@ public class Utilizador {
         if(listaPlaylists.containsKey(id_playlist)){
             return listaPlaylists.get(id_playlist);
         }
-        else throw new PlaylistNaoExisteException("A Playlist não existe no sistema");
+        else throw new PlaylistNaoExisteException("A BLogic.Playlist não existe no sistema");
     }
 
 
@@ -134,7 +136,7 @@ public class Utilizador {
     @Override
     public String toString(
 ) {
-        return "Utilizador{" +
+        return "BLogic.Utilizador{" +
                 "listaPlaylists=" + listaPlaylists +
                 ", nome='" + nome + '\'' +
                 ", email='" + email + '\'' +
