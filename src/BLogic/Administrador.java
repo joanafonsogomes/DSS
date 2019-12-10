@@ -21,6 +21,12 @@ public class Administrador{
         this.utilizadores = utilizadores;
     }
 
+    public Administrador(String email,String password){
+        this.email = email;
+        this.password = password;
+        this.utilizadores = new ArrayList<>();
+    }
+
 
     public String getEmail() {
         return email;
