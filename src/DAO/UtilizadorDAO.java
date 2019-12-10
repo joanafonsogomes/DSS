@@ -27,7 +27,7 @@ public class UtilizadorDAO implements DAO<Utilizador> {
     public List<Utilizador> getAll () {
         return null;
     }
-    //olao
+
     public void save (Utilizador t) {
 
     }

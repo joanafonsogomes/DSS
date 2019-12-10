@@ -7,7 +7,7 @@ import Exceptions.ContaNaoExisteException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Objects;
-
+//ol
 public class Administrador{
 
     private String email;
