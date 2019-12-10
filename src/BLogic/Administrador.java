@@ -1,30 +1,53 @@
 package BLogic;
 
+import DAO.AdministradorDAO;
+import DAO.UtilizadorDAO;
+import Exceptions.ContaNaoExisteException;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Objects;
 
 public class Administrador{
 
     private String email;
     private String password;
-    private ArrayList<Utilizador> utilizadores;
+    private HashMap<String,Utilizador> utilizadores;
 
     public Administrador(){
         this.email="";
         this.password="";
-        this.utilizadores = new ArrayList<Utilizador>();
+        this.utilizadores = new HashMap<String, Utilizador>();
+        (new AdministradorDAO()).save(this);
     }
 
-    public Administrador(String email,String password,ArrayList<Utilizador> utilizadores){
+    public Administrador(String email,String password,HashMap<String,Utilizador> utilizadores){
         this.email = email;
         this.password = password;
         this.utilizadores = utilizadores;
     }
 
+    public void criarConta(String email, String nome, String password, HashMap<Integer, Playlist> listaPlaylists){
+        if(!utilizadores.containsKey(email)) {
+            Utilizador u = new Utilizador(listaPlaylists, email, nome, password);
+            utilizadores.put(email,u.clone());
+            (new UtilizadorDAO()).save(u);
+        }
+    }
+
+    public void pretendeEliminar(String email) throws ContaNaoExisteException {
+        if(utilizadores.containsKey(email)){
+            Utilizador u = utilizadores.get(email);
+            utilizadores.remove(email);
+            (new UtilizadorDAO()).delete(u);
+        }
+        else throw new ContaNaoExisteException("A conta inserida não existe no sistema");
+    }
+
     public Administrador(String email,String password){
         this.email = email;
         this.password = password;
-        this.utilizadores = new ArrayList<>();
+        this.utilizadores = new HashMap<>();
     }
 
 
@@ -44,11 +67,11 @@ public class Administrador{
         this.password = password;
     }
 
-    public ArrayList<Utilizador> getUtilizadores() {
+    public HashMap<String, Utilizador> getUtilizadores() {
         return utilizadores;
     }
 
-    public void setUtilizadores(ArrayList<Utilizador> utilizadores) {
+    public void setUtilizadores(HashMap<String, Utilizador> utilizadores) {
         this.utilizadores = utilizadores;
     }
 

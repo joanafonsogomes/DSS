@@ -62,24 +62,13 @@ public class MediaCenter {
         this.utilizadores = utilizadores;
     }
 
-    //apenas o admin consegue criar conta
-    public void criarConta(String email,String nome,String password,HashMap<Integer, Playlist> listaPlaylists){
-        if(!utilizadores.containsKey(email)) {
-            Utilizador u = new Utilizador(listaPlaylists, email, nome, password);
-            utilizadores.put(email,u.clone());
-        }
-    }
+
 
     /**
      *apenas o admin consegue elimar conta
      * @param email
      */
-    public void pretendeEliminar(String email) throws ContaNaoExisteException {
-        if(utilizadores.containsKey(email)){
-            utilizadores.remove(email);
-        }
-        else throw new ContaNaoExisteException("A conta inserida não existe no sistema");
-    }
+
 
     /**
      * Elimina media para um determinado utilizador e se necessário da biblioteca

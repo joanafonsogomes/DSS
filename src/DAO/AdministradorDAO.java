@@ -17,7 +17,7 @@ public class AdministradorDAO implements DAO<Administrador> {
 
     private Connection con;
 
-    private AdministradorDAO() {
+    public AdministradorDAO() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
         } catch (ClassNotFoundException e) {
@@ -30,7 +30,7 @@ public class AdministradorDAO implements DAO<Administrador> {
         try {
             con = connect();
             if (con != null) {
-                PreparedStatement pStm = con.prepareStatement("select * from AdministradorDAO where email=?");
+                PreparedStatement pStm = con.prepareStatement("select * from Administrador where email=?");
                 pStm.setInt(1, id);
                 ResultSet rs = pStm.executeQuery();
                 if (rs.next()) {

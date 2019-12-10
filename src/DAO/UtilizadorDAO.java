@@ -12,7 +12,7 @@ public class UtilizadorDAO implements DAO<Utilizador> {
 
     private Connect con;
 
-    private UtilizadorDAO() {
+    public UtilizadorDAO() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
         } catch (ClassNotFoundException e) {
