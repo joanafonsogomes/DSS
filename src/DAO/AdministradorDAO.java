@@ -3,67 +3,39 @@ package DAO;
 import BLogic.Administrador;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-public class AdministradorDAO implements Map<String, Administrador> {
-    @Override
-    public int size() {
-        return 0;
+public class AdministradorDAO implements DAO<Administrador> {
+
+    private Connect con;
+
+    private AdministradorDAO() {
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            throw new NullPointerException(e.getMessage());
+        }
     }
 
-    @Override
-    public boolean isEmpty() {
-        return false;
-    }
-//olllaaa
-    @Override
-    public boolean containsKey(Object o) {
-        return false;
-    }
-
-    @Override
-    public boolean containsValue(Object o) {
-        return false;
-    }
-
-    @Override
-    public Administrador get(Object o) {
+    public Administrador get(int id){
         return null;
     }
 
-    @Override
-    public Administrador put(String s, Administrador administrador) {
+    public List<Administrador> getAll () {
         return null;
     }
 
-    @Override
-    public Administrador remove(Object o) {
-        return null;
-    }
-
-    @Override
-    public void putAll(Map<? extends String, ? extends Administrador> map) {
+    public void save (Administrador t) {
 
     }
 
-    @Override
-    public void clear() {
-        throw new NullPointerException("Not implemented!");
-    }
+    public void update (Administrador t){
 
-    @Override
-    public Set<String> keySet() {
-        throw new NullPointerException("Not implemented!");
     }
+    public void delete (Administrador t){
 
-    @Override
-    public Collection<Administrador> values() {
-        throw new NullPointerException("Not implemented!");
-    }
-
-    @Override
-    public Set<Entry<String, Administrador>> entrySet() {
-        throw new NullPointerException("Not implemented!");
     }
 }
+
