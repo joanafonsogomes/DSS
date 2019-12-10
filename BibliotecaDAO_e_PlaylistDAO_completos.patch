@@ -1,0 +1,231 @@
+Index: src/DAO/PlaylistDAO.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/DAO/PlaylistDAO.java	(revision 383a21ea99a19a695713b6c5316d2f1ed57f5a84)
++++ src/DAO/PlaylistDAO.java	(date 1575481725546)
+@@ -1,4 +1,99 @@
+ package DAO;
+ 
+-public class PlaylistDAO {
++import BLogic.Playlist;
++
++import java.sql.Connection;
++import java.sql.ResultSet;
++import java.sql.Statement;
++import java.util.Collection;
++import java.util.Map;
++import java.util.Set;
++
++public class PlaylistDAO implements Map<String, Playlist> {
++
++    private static PlaylistDAO inst=null;
++
++    private PlaylistDAO() {
++        try {
++            Class.forName("com.mysql.jdbc.Driver");
++        }
++        catch (ClassNotFoundException e) {
++            throw new NullPointerException(e.getMessage());
++        }
++    }
++
++    public static PlaylistDAO getInstance(){
++        if(inst == null) {
++            inst = new PlaylistDAO();
++        }
++        return inst;
++    }
++
++    @Override
++    public int size() {
++        try {
++            Connection conn = Connect.connect();
++            int i = 0;
++            Statement stmt = conn.createStatement();
++            ResultSet rs = stmt.executeQuery("SELECT nome FROM TAlunos");
++            for (; rs.next(); i++) ;
++            return i;
++        }
++        catch (Exception e) {throw new NullPointerException(e.getMessage());}
++    }
++
++    @Override
++    public boolean isEmpty() {
++        throw new NullPointerException("Not implemented!");
++    }
++
++    @Override
++    public boolean containsKey(Object o) {
++        throw new NullPointerException("Not implemented!");
++    }
++
++    @Override
++    public boolean containsValue(Object o) {
++        throw new NullPointerException("Not implemented!");
++    }
++
++    @Override
++    public Playlist get(Object o) {
++        throw new NullPointerException("Not implemented!");
++    }
++
++    @Override
++    public Playlist put(String s, Playlist playlist) {
++        throw new NullPointerException("Not implemented!");
++    }
++
++    @Override
++    public Playlist remove(Object o) {
++        throw new NullPointerException("Not implemented!");
++    }
++
++    @Override
++    public void putAll(Map<? extends String, ? extends Playlist> map) {
++        throw new NullPointerException("Not implemented!");
++    }
++
++    @Override
++    public void clear() {
++        throw new NullPointerException("Not implemented!");
++    }
++
++    @Override
++    public Set<String> keySet() {
++        throw new NullPointerException("Not implemented!");
++    }
++
++    @Override
++    public Collection<Playlist> values() {
++        throw new NullPointerException("Not implemented!");
++    }
++
++    @Override
++    public Set<Entry<String, Playlist>> entrySet() {
++        throw new NullPointerException("Not implemented!");
++    }
+ }
+Index: src/DAO/BibliotecaDAO.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/DAO/BibliotecaDAO.java	(revision 383a21ea99a19a695713b6c5316d2f1ed57f5a84)
++++ src/DAO/BibliotecaDAO.java	(date 1575481874027)
+@@ -1,4 +1,98 @@
+ package DAO;
+ 
+-public class BibliotecaDAO {
++import BLogic.Biblioteca;
++
++import java.sql.Connection;
++import java.sql.ResultSet;
++import java.sql.Statement;
++import java.util.Collection;
++import java.util.Map;
++import java.util.Set;
++
++public class BibliotecaDAO implements Map<String, Biblioteca> {
++    private static BibliotecaDAO inst=null;
++
++    private BibliotecaDAO() {
++        try {
++            Class.forName("com.mysql.jdbc.Driver");
++        }
++        catch (ClassNotFoundException e) {
++            throw new NullPointerException(e.getMessage());
++        }
++    }
++
++    public static BibliotecaDAO getInstance(){
++        if(inst == null) {
++            inst = new BibliotecaDAO();
++        }
++        return inst;
++    }
++
++    @Override
++    public int size() {
++        try {
++            Connection conn = Connect.connect();
++            int i = 0;
++            Statement stmt = conn.createStatement();
++            ResultSet rs = stmt.executeQuery("SELECT nome FROM TAlunos");
++            for (; rs.next(); i++) ;
++            return i;
++        }
++        catch (Exception e) {throw new NullPointerException(e.getMessage());}
++    }
++
++    @Override
++    public boolean isEmpty() {
++        throw new NullPointerException("Not implemented!");
++    }
++
++    @Override
++    public boolean containsKey(Object o) {
++        throw new NullPointerException("Not implemented!");
++    }
++
++    @Override
++    public boolean containsValue(Object o) {
++        throw new NullPointerException("Not implemented!");
++    }
++
++    @Override
++    public Biblioteca get(Object o) {
++        throw new NullPointerException("Not implemented!");
++    }
++
++    @Override
++    public Biblioteca put(String s, Biblioteca biblioteca) {
++        throw new NullPointerException("Not implemented!");
++    }
++
++    @Override
++    public Biblioteca remove(Object o) {
++        throw new NullPointerException("Not implemented!");
++    }
++
++    @Override
++    public void putAll(Map<? extends String, ? extends Biblioteca> map) {
++        throw new NullPointerException("Not implemented!");
++    }
++
++    @Override
++    public void clear() {
++        throw new NullPointerException("Not implemented!");
++    }
++
++    @Override
++    public Set<String> keySet() {
++        throw new NullPointerException("Not implemented!");
++    }
++
++    @Override
++    public Collection<Biblioteca> values() {
++        throw new NullPointerException("Not implemented!");
++    }
++
++    @Override
++    public Set<Entry<String, Biblioteca>> entrySet() {
++        throw new NullPointerException("Not implemented!");
++    }
+ }
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/misc.xml	(revision 383a21ea99a19a695713b6c5316d2f1ed57f5a84)
++++ .idea/misc.xml	(date 1575481410522)
+@@ -1,6 +1,6 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11.0.4" project-jdk-type="JavaSDK">
++  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
+     <output url="file://$PROJECT_DIR$/out" />
+   </component>
+ </project>
+\ No newline at end of file

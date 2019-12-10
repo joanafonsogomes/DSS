@@ -1,88 +1,42 @@
 package DAO;
 
+
 import BLogic.Media;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-public class MediaDAO implements Map<String, Media> {
+public class MediaDAO implements DAO<Media> {
 
-    private static MediaDAO inst = null;
+    private Connect con;
 
     private MediaDAO() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
-        }
-        catch (ClassNotFoundException e) {
+        } catch (ClassNotFoundException e) {
             throw new NullPointerException(e.getMessage());
         }
     }
 
-    public static MediaDAO getInstance(){
-        if(inst == null) {
-            inst = new MediaDAO();
-        }
-        return inst;
+    public Media get(int id){
+        return null;
     }
 
-    @Override
-    public int size() {
-        throw new NullPointerException("Not implemented!");
+    public List<Media> getAll () {
+        return null;
+    }
+    //olao
+    public void save (Media t) {
+
     }
 
-    @Override
-    public boolean isEmpty() {
-        throw new NullPointerException("Not implemented!");
-    }
+    public void update (Media t){
 
-    @Override
-    public boolean containsKey(Object o) {
-        throw new NullPointerException("Not implemented!");
     }
+    public void delete (Media t){
 
-    @Override
-    public boolean containsValue(Object o) {
-        throw new NullPointerException("Not implemented!");
-    }
-
-    @Override
-    public Media get(Object o) {
-        throw new NullPointerException("Not implemented!");
-    }
-
-    @Override
-    public Media put(String s, Media media) {
-        throw new NullPointerException("Not implemented!");
-    }
-
-    @Override
-    public Media remove(Object o) {
-        throw new NullPointerException("Not implemented!");
-    }
-
-    @Override
-    public void putAll(Map<? extends String, ? extends Media> map) {
-        throw new NullPointerException("Not implemented!");
-    }
-
-    @Override
-    public void clear() {
-        throw new NullPointerException("Not implemented!");
-    }
-
-    @Override
-    public Set<String> keySet() {
-        throw new NullPointerException("Not implemented!");
-    }
-
-    @Override
-    public Collection<Media> values() {
-        throw new NullPointerException("Not implemented!");
-    }
-
-    @Override
-    public Set<Entry<String, Media>> entrySet(){
-        throw new NullPointerException("Not implemented!");
     }
 }
+
