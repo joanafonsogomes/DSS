@@ -26,7 +26,7 @@ public class AdministradorDAO implements DAO<Administrador> {
     public List<Administrador> getAll () {
         return null;
     }
-//ola
+//olao
     public void save (Administrador t) {
 
     }
