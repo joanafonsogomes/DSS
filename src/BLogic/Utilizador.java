@@ -1,5 +1,6 @@
 package BLogic;
 
+import DAO.UtilizadorDAO;
 import Exceptions.MediaNaoExisteException;
 import Exceptions.PlaylistNaoExisteException;
 
@@ -18,20 +19,14 @@ public class Utilizador {
     private String pass;
     private HashMap<String, Media> listaMediaUtilizadores;
 
-    /**
-     *
-     * Construtores
-     * @param listaPlaylists
-     * @param email
-     * @param nome
-     * @param password
-     */
-    public Utilizador(HashMap<Integer, Playlist> listaPlaylists, String email, String nome, String password) {
+
+    public Utilizador() {
         this.listaPlaylists = new HashMap<Integer, Playlist>();
         this.nome = "";
         this.email = "";
         this.pass = "";
         this.listaMediaUtilizadores = new HashMap<String, Media>();
+        (new UtilizadorDAO()).save(this);
     }
 
     public Utilizador(HashMap<Integer, Playlist> listaPlaylists, String nome, String email, String pass, HashMap<String, Media>listaMediaUtilizadores){
@@ -40,6 +35,14 @@ public class Utilizador {
         this.email = email;
         this.pass = pass;
         this.listaMediaUtilizadores = listaMediaUtilizadores;
+    }
+
+    public Utilizador(String nome, String email, String pass){
+        this.listaPlaylists= new HashMap<>();
+        this.nome = nome;
+        this.email = email;
+        this.pass = pass;
+        this.listaMediaUtilizadores = new HashMap<>();
     }
 
     public Utilizador(Utilizador outroUtilizador) {
