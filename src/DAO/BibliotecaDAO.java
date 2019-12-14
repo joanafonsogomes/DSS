@@ -23,6 +23,11 @@ public class BibliotecaDAO implements DAO<Biblioteca> {
         }
     }
 
+    @Override
+    public Biblioteca get(String id) {
+        return null;
+    }
+
     public Biblioteca get(int id){
         try {
             con = connect();

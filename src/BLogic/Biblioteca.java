@@ -14,7 +14,7 @@ public class Biblioteca{
      */
     //private Collection<BLogic.Media> listaMediaBiblioteca;
     private HashMap<String,Media> listaMediaBiblioteca;
-    private Integer idBiblioteca;
+    private int idBiblioteca;
     private String nome;
 
     /**
@@ -22,29 +22,11 @@ public class Biblioteca{
      * Construtores
      */
     public Biblioteca() {
-        this.idBiblioteca=1;
-        this.nome= "Biblioteca";
         this.listaMediaBiblioteca = new HashMap<String,Media>();
     }
 
     public Biblioteca(HashMap<String,Media> listaMediaBiblioteca){
-        this.idBiblioteca = 1;
-        this.nome= "Biblioteca";
         this.listaMediaBiblioteca = listaMediaBiblioteca;
-    }
-
-    public Biblioteca(Integer a, String u){
-        this.idBiblioteca = a;
-        this.nome = u;
-        this.listaMediaBiblioteca = new HashMap<String,Media>();
-    }
-
-    public Integer getIdBiblioteca() {
-        return idBiblioteca;
-    }
-
-    public String getNome() {
-        return nome;
     }
 
     public Biblioteca(Biblioteca outraBiblioteca) {
