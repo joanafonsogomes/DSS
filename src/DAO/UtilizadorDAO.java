@@ -1,5 +1,6 @@
 package DAO;
 
+import BLogic.Media;
 import BLogic.Playlist;
 import BLogic.Utilizador;
 
@@ -32,7 +33,6 @@ public class UtilizadorDAO implements DAO<Utilizador> {
                 PreparedStatement pStm = con.prepareStatement("select * from Utilizador where email=?");
                 pStm.setString(1, email);
                 ResultSet rs = pStm.executeQuery();
-                Utilizador u;
                 String user = null;
                 String e = null;
                 String pass = null;
@@ -52,7 +52,20 @@ public class UtilizadorDAO implements DAO<Utilizador> {
                     map.put(idPlayList,p);
                  //   rs2.next();
                 }
-                return new Utilizador(map,user,e,pass);
+                PreparedStatement pStm3 = con.prepareStatement("select m.idMedia, m.nome, m.cat,m.artista,m.link from Media m, Utilizador_has_Media u where email=? and u.idUtilizador=email and u.idMedia=m.idMedia");
+                pStm3.setString(1,email);
+                ResultSet rs3 = pStm3.executeQuery();
+                HashMap<Integer, Media> map2 = new HashMap<>();
+                while (rs3.next()) {
+                    int idMedia = rs3.getInt("idMedia");
+                    String nome = rs3.getString("nome");
+                    String artista = rs3.getString("artista");
+                    String cat = rs3.getString("cat");
+                    String link = rs3.getString("link");
+                    Media media = new Media(idMedia, nome, cat, link, artista);
+                    map2.put(idMedia, media);
+                }
+                return new Utilizador(map,user,e,pass,map2);
             }
         }
         catch (SQLException e) {
@@ -61,7 +74,7 @@ public class UtilizadorDAO implements DAO<Utilizador> {
         finally{
             Connect.close(con);
         }
-        return new Utilizador();
+        return null;
 
     }
 
@@ -126,13 +139,6 @@ public class UtilizadorDAO implements DAO<Utilizador> {
         } finally {
             Connect.close(con);
         }
-    }
-
-    public static void main(String[] args) {
-        Utilizador u = new Utilizador("Ana Margarida","mags@email.com","123");
-        UtilizadorDAO d = new UtilizadorDAO();
-        d.save(u);
-        System.out.println("done");
     }
 }
 

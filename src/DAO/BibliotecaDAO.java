@@ -2,6 +2,7 @@ package DAO;
 
 
 import BLogic.Biblioteca;
+import BLogic.Media;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -35,9 +36,26 @@ public class BibliotecaDAO implements DAO<Biblioteca> {
                 PreparedStatement pStm = con.prepareStatement("select * from Biblioteca where idBiblioteca=?");
                 pStm.setInt(1, id);
                 ResultSet rs = pStm.executeQuery();
-                if (((ResultSet) rs).next()) {
-                    return new Biblioteca(rs.getInt("idBiblioteca"), rs.getString("nome"));
+                int idBiblioteca = 0;
+                String nomeB = null;
+                if (rs.next()) {
+                    idBiblioteca=rs.getInt("idBiblioteca");
+                    nomeB = rs.getString("nome");
                 }
+                PreparedStatement pStm3 = con.prepareStatement("select m.idMedia, m.nome, m.cat,m.artista,m.link from Media m where idBiblioteca=? and idBiblioteca=m.biblioteca");
+                pStm3.setInt(1,id);
+                ResultSet rs3 = pStm3.executeQuery();
+                HashMap<Integer, Media> map2 = new HashMap<>();
+                while (rs3.next()) {
+                    int idMedia = rs3.getInt("idMedia");
+                    String nome = rs3.getString("nome");
+                    String artista = rs3.getString("artista");
+                    String cat = rs3.getString("cat");
+                    String link = rs3.getString("link");
+                    Media media = new Media(idMedia, nome, cat, link, artista);
+                    map2.put(idMedia, media);
+                }
+                return new Biblioteca(idBiblioteca,nomeB,map2);
             }
         }
         catch (SQLException e) {
@@ -47,7 +65,7 @@ public class BibliotecaDAO implements DAO<Biblioteca> {
             Connect.close((Connection) con);
         }
 
-        return new Biblioteca();
+        return null;
     }
 
     public List<Biblioteca> getAll () {

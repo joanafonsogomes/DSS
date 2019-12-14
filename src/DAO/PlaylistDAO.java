@@ -2,6 +2,7 @@ package DAO;
 
 
 import BLogic.Administrador;
+import BLogic.Media;
 import BLogic.Playlist;
 
 import java.sql.Connection;
@@ -33,12 +34,30 @@ public class PlaylistDAO implements DAO<Playlist> {
         try {
             con = connect();
             if (con != null) {
-                PreparedStatement pStm = con.prepareStatement("select * from Playlist where emailUtilizador=?");
+                PreparedStatement pStm = con.prepareStatement("select * from Playlist where idPlaylist=?");
                 pStm.setInt(1, id);
                 ResultSet rs = pStm.executeQuery();
+                Playlist p;
+                int idPlaylist = 0;
+                String nomeP = null;
                 if (rs.next()) {
-                    return new Playlist(rs.getInt("idPlaylist"),rs.getString("nome"));
+                    idPlaylist=rs.getInt("idPlaylist");
+                    nomeP = rs.getString("nome");
                 }
+                PreparedStatement pStm2 = con.prepareStatement("select m.idMedia, m.nome, m.cat,m.artista,m.link from Media m, Playlist_has_Media p where idPlaylist=? and idPlaylist=p.idPlaylist and p.idMedia = m.idMedia");
+                pStm2.setInt(1, id);
+                ResultSet rs2 = pStm2.executeQuery();
+                HashMap<Integer, Media> map = new HashMap<>();
+                while (rs2.next()) {
+                    int idMedia = rs2.getInt("idMedia");
+                    String nome = rs2.getString("nome");
+                    String artista = rs2.getString("artista");
+                    String cat = rs2.getString("cat");
+                    String link = rs2.getString("link");
+                    Media media = new Media(idMedia, nome, cat, link, artista);
+                    map.put(idMedia, media);
+                }
+                return new Playlist(map, idPlaylist,nomeP);
             }
         }
         catch (SQLException e) {
@@ -48,7 +67,7 @@ public class PlaylistDAO implements DAO<Playlist> {
             Connect.close(con);
         }
 
-        return new Playlist();
+        return null;
     }
 
     public List<Playlist> getAll () {

@@ -8,9 +8,9 @@ public class Media {
      *
      * Variáveis de instância
      */
-    private String idMedia;
+    private int idMedia;
+    private String nome;
     private String cat;
-    //para um primeiro teste:
     private String link;
     private String artista;
 
@@ -18,15 +18,17 @@ public class Media {
      *
      * Construtores
      */
-    public Media(String idMedia, String artista) {
-        this.idMedia = idMedia;
+    public Media(int idMedia, String artista) {
+        this.idMedia = 0;
+        this.nome = "";
         this.cat = "";
         this.link = "";
         this.artista = artista;
     }
 
-    public Media(String idMedia ,String cat,String link, String artista){
-        this.idMedia= idMedia;
+    public Media(int idMedia,String nome ,String cat,String link, String artista){
+        this.idMedia = idMedia;
+        this.nome= nome;
         this.cat= cat; //clone
         this.link = link;
         this.artista = artista;
@@ -34,21 +36,32 @@ public class Media {
 
     public Media(Media outraMedia) {
         this.idMedia = outraMedia.getIdMedia();
+        this.nome = outraMedia.getNome();
         this.cat = outraMedia.getCat();
         this.link = outraMedia.getLink();
         this.artista = outraMedia.getArtista();
+    }
+
+    public int getIdMedia() {
+        return idMedia;
+    }
+
+    public void setIdMedia(int idMedia) {
+        this.idMedia = idMedia;
     }
 
     /**
      *
      * Getters e Setters
      */
-    public String getIdMedia() {
-        return idMedia;
+
+
+    public String getNome() {
+        return nome;
     }
 
-    public void setIdMedia(String idMedia) {
-        this.idMedia = idMedia;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     public String getCat() {
@@ -81,7 +94,7 @@ public class Media {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Media media = (Media) o;
-        return idMedia == media.idMedia &&
+        return nome == media.nome &&
                 Objects.equals(cat, media.cat) &&
                 Objects.equals(link, media.link) &&
                 Objects.equals(artista, media.artista);
@@ -89,7 +102,7 @@ public class Media {
 
     @Override
     public int hashCode() {
-        return Objects.hash(idMedia, cat,link, artista);
+        return Objects.hash(nome, cat,link, artista);
     }
 
     /**
@@ -115,7 +128,7 @@ public class Media {
     @Override
     public String toString() {
         return "BLogic.Media{" +
-                "idMedia=" + idMedia +
+                "nome=" + nome +
                 ", cat='" + cat + '\'' +
                 ", link='" + link + '\'' +
                 '}';

@@ -6,10 +6,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 import static DAO.Connect.connect;
 
@@ -45,7 +42,7 @@ public class AdministradorDAO implements DAO<Administrador> {
                     Connect.close(con);
                 }
 
-        return new Administrador();
+        return null;
     }
 
     @Override
@@ -54,7 +51,22 @@ public class AdministradorDAO implements DAO<Administrador> {
     }
 
     public List<Administrador> getAll () {
-        return null;
+        List<Administrador> administradors = new ArrayList<>();
+        try {
+            con = connect();
+            if(con != null) {
+                PreparedStatement pStm = con.prepareStatement("select * from Administrador");
+                ResultSet rs = pStm.executeQuery();
+                while(rs.next()) {
+                    administradors.add(new Administrador(rs.getString("email"),rs.getString("pass")));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            Connect.close(con);
+        }
+        return administradors;
     }
 
     //cria um administrador novo

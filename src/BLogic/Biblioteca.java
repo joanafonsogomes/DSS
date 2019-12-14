@@ -13,7 +13,7 @@ public class Biblioteca{
      * Variáveis de instância
      */
     //private Collection<BLogic.Media> listaMediaBiblioteca;
-    private HashMap<String,Media> listaMediaBiblioteca;
+    private HashMap<Integer,Media> listaMediaBiblioteca;
     private int idBiblioteca;
     private String nome;
 
@@ -22,25 +22,36 @@ public class Biblioteca{
      * Construtores
      */
     public Biblioteca() {
-        this.listaMediaBiblioteca = new HashMap<String,Media>();
+        this.listaMediaBiblioteca = new HashMap<Integer, Media>();
     }
 
-    public Biblioteca(HashMap<String,Media> listaMediaBiblioteca){
+    public Biblioteca(HashMap<Integer,Media> listaMediaBiblioteca){
         this.listaMediaBiblioteca = listaMediaBiblioteca;
     }
 
     public Biblioteca(Biblioteca outraBiblioteca) {
     }
 
+    public Biblioteca(int idBiblioteca, String nome,HashMap<Integer,Media> listaMediaBiblioteca) {
+        this.idBiblioteca = idBiblioteca;
+        this.nome = nome;
+        this.listaMediaBiblioteca = listaMediaBiblioteca;
+    }
+
+    public Biblioteca(int idBiblioteca, String nome) {
+        this.idBiblioteca = idBiblioteca;
+        this.nome = nome;
+    }
+
     /**
      *
      * Getters e Setters
      */
-    public HashMap<String, Media> getListaMediaBiblioteca() {
+    public HashMap<Integer, Media> getListaMediaBiblioteca() {
         return listaMediaBiblioteca;
     }
 
-    public void setListaMediaBiblioteca(HashMap<String, Media> listaMediaBiblioteca) {
+    public void setListaMediaBiblioteca(HashMap<Integer, Media> listaMediaBiblioteca) {
         this.listaMediaBiblioteca = listaMediaBiblioteca;
     }
 
@@ -136,4 +147,11 @@ public class Biblioteca{
         return new Biblioteca(this);
     }
 
+    public int getIdBiblioteca() {
+        return this.idBiblioteca;
+    }
+
+    public String getNome() {
+        return this.nome;
+    }
 }

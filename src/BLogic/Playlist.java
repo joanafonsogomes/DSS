@@ -10,7 +10,7 @@ public class Playlist {
      *
      * Variáveis de instância
      */
-    private HashMap<String, Media> listaMediaPlaylist;
+    private HashMap<Integer, Media> listaMediaPlaylist;
     private int idPlaylist;
     private String nome;
     //private BLogic.Media atual;
@@ -20,19 +20,21 @@ public class Playlist {
      * Construtores
      */
     public Playlist() {
-        this.listaMediaPlaylist = new HashMap<String, Media>();
+        this.listaMediaPlaylist = new HashMap<Integer, Media>();
         this.idPlaylist = 0;
         this.nome="";
     }
 
-    public Playlist(HashMap<String, Media> listaMediaPlaylist, int idPlaylist){
+    public Playlist(HashMap<Integer, Media> listaMediaPlaylist, int idPlaylist,String nome){
         this.listaMediaPlaylist= listaMediaPlaylist;
         this.idPlaylist = idPlaylist; //clone
+        this.nome = nome;
     }
 
     public Playlist(Playlist outraPlaylist) {
         this.listaMediaPlaylist = outraPlaylist.getListaMediaPlaylist();
         this.idPlaylist = outraPlaylist.getIdPlaylist();
+        this.nome = outraPlaylist.getNome();
     }
 
     public Playlist(int idPlaylist, String nome) {
@@ -44,11 +46,11 @@ public class Playlist {
      *
      * Getters e Setters
      */
-    public HashMap<String, Media> getListaMediaPlaylist() {
+    public HashMap<Integer, Media> getListaMediaPlaylist() {
         return listaMediaPlaylist;
     }
 
-    public void setListaMediaPlaylist(HashMap<String, Media> listaMediaPlaylist) {
+    public void setListaMediaPlaylist(HashMap<Integer, Media> listaMediaPlaylist) {
         this.listaMediaPlaylist = listaMediaPlaylist;
     }
 
