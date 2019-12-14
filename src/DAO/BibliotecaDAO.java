@@ -16,7 +16,7 @@ public class BibliotecaDAO implements DAO<Biblioteca> {
 
     private Connection con;
 
-    private BibliotecaDAO() {
+    public BibliotecaDAO() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
         } catch (ClassNotFoundException e) {

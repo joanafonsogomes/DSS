@@ -91,15 +91,7 @@ public class MediaCenter {
      * @param nome
      * @param pass
      */
-    public int validaRegisto(String email, String nome, String pass) throws ContaNaoExisteException,PassErradaException{
-        int r=0;
-        if(utilizadores.containsKey(email)){
-            if(utilizadores.get(email).getPass().equals(pass)) r=1;
-            else throw new PassErradaException("A password inserida não corresponde ao email de utilizador");
-        }
-        else throw new ContaNaoExisteException("A conta inserida não existe no sistema");
-        return r;
-    }
+
 
 
 
