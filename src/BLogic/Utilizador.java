@@ -17,7 +17,7 @@ public class Utilizador {
     private String nome;
     private String email;
     private String pass;
-    private HashMap<String, Media> listaMediaUtilizadores;
+    private HashMap<Integer, Media> listaMediaUtilizadores;
 
 
     public Utilizador() {
@@ -25,11 +25,11 @@ public class Utilizador {
         this.nome = "";
         this.email = "";
         this.pass = "";
-        this.listaMediaUtilizadores = new HashMap<String, Media>();
+        this.listaMediaUtilizadores = new HashMap<Integer, Media>();
         (new UtilizadorDAO()).save(this);
     }
 
-    public Utilizador(HashMap<Integer, Playlist> listaPlaylists, String nome, String email, String pass, HashMap<String, Media>listaMediaUtilizadores){
+    public Utilizador(HashMap<Integer, Playlist> listaPlaylists, String nome, String email, String pass, HashMap<Integer, Media>listaMediaUtilizadores){
         this.listaPlaylists= listaPlaylists;
         this.nome = nome;
         this.email = email;
@@ -97,11 +97,11 @@ public class Utilizador {
         this.pass = pass;
     }
 
-    public HashMap<String, Media> getListaMediaUtilizadores() {
+    public HashMap<Integer, Media> getListaMediaUtilizadores() {
         return listaMediaUtilizadores;
     }
 
-    public void setListaMediaUtilizadores(HashMap<String, Media> listaMediaUtilizadores) {
+    public void setListaMediaUtilizadores(HashMap<Integer, Media> listaMediaUtilizadores) {
         this.listaMediaUtilizadores = listaMediaUtilizadores;
     }
 
@@ -145,13 +145,13 @@ public class Utilizador {
      * To String
      */
     @Override
-    public String toString(
-) {
-        return "BLogic.Utilizador{" +
+    public String toString() {
+        return "Utilizador{" +
                 "listaPlaylists=" + listaPlaylists +
                 ", nome='" + nome + '\'' +
                 ", email='" + email + '\'' +
                 ", pass='" + pass + '\'' +
+                ", listaMediaUtilizadores=" + listaMediaUtilizadores +
                 '}';
     }
 
@@ -162,7 +162,6 @@ public class Utilizador {
     public Utilizador clone() {
         return new Utilizador(this);
     }
-
 
 
 }

@@ -7,10 +7,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 import static DAO.Connect.connect;
 
@@ -35,12 +32,22 @@ public class MediaDAO implements DAO<Media> {
         try {
             con = connect();
             if (con != null) {
-                PreparedStatement pStm = con.prepareStatement("select * from Media where nome=?");
+                PreparedStatement pStm = con.prepareStatement("select * from Media where idMedia=?");
                 pStm.setInt(1, id);
                 ResultSet rs = pStm.executeQuery();
+                int idMedia=0;
+                String nome=null;
+                String cat=null;
+                String link=null;
+                String artista=null;
                 if (rs.next()) {
-                    //return new Media(rs.getString("nome"),rs.getString("email") ,rs.getString("pass"));
+                    idMedia = rs.getInt("idMedia");
+                    nome = rs.getString("nome");
+                    cat = rs.getString("cat");
+                    link = rs.getString("nome");
+                    artista = rs.getString("artista");
                 }
+                return new Media(idMedia,nome,cat,link,artista);
             }
         }
         catch (SQLException e) {
@@ -54,10 +61,41 @@ public class MediaDAO implements DAO<Media> {
     }
 
     public List<Media> getAll () {
-        return null;
+        List<Media> medias = new ArrayList<>();
+        try {
+            con = connect();
+            if(con != null) {
+                PreparedStatement pStm = con.prepareStatement("select * from Utilizador");
+                ResultSet rs = pStm.executeQuery();
+                while(rs.next()) {
+                    medias.add(new Media(rs.getInt("idMedia"),rs.getString("nome"),rs.getString("cat"),rs.getString("link"),rs.getString("artista")));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            Connect.close(con);
+        }
+        return medias;
     }
-    //olao
+
     public void save (Media t) {
+        try {
+            con = connect();
+            if(con != null) {
+                PreparedStatement pStm = con.prepareStatement("insert into Media(idMedia,nome,cat,link,artista) values (?,?,?,?,?) ");
+                pStm.setInt(1, t.getIdMedia());
+                pStm.setString(2, t.getNome());
+                pStm.setString(3, t.getCat());
+                pStm.setString(4, t.getLink());
+                pStm.setString(5, t.getArtista());
+                pStm.execute();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            Connect.close(con);
+        }
 
     }
 
@@ -65,7 +103,18 @@ public class MediaDAO implements DAO<Media> {
 
     }
     public void delete (Media t){
-
+        try {
+            con = Connect.connect();
+            if (con != null) {
+                PreparedStatement pStm = con.prepareStatement("delete from Media where idMedia=?");
+                pStm.setInt(1,t.getIdMedia());
+                pStm.execute();
+            }
+        } catch(SQLException e){
+            e.printStackTrace();
+        } finally {
+            Connect.close(con);
+        }
     }
 }
 

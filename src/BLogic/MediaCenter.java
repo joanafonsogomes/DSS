@@ -104,7 +104,7 @@ public class MediaCenter {
 
 
 
-    public void addMedia(String media, String artista,String utilizador) throws MediaJaExisteException{
+    public void addMedia(int media, String artista,String utilizador) throws MediaJaExisteException{
         if( !(biblioteca.getListaMediaBiblioteca().containsKey(media)) ) {
             Media m = new Media(media,artista);
             biblioteca.getListaMediaBiblioteca().put(media,m);

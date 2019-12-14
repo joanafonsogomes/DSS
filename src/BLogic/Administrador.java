@@ -27,7 +27,7 @@ public class Administrador{
         this.utilizadores = utilizadores;
     }
 
-    public void criarConta(String email, String nome, String password, HashMap<Integer, Playlist> listaPlaylists,HashMap<String, Media>listaMediaUtilizadores){
+    public void criarConta(String email, String nome, String password, HashMap<Integer, Playlist> listaPlaylists,HashMap<Integer, Media>listaMediaUtilizadores){
         if(!utilizadores.containsKey(email)) {
             Utilizador u = new Utilizador(listaPlaylists, email, nome, password,listaMediaUtilizadores);
             utilizadores.put(email,u.clone());
