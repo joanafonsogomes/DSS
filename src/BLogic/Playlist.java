@@ -12,6 +12,7 @@ public class Playlist {
      */
     private HashMap<String, Media> listaMediaPlaylist;
     private int idPlaylist;
+    private String nome;
     //private BLogic.Media atual;
 
     /**
@@ -21,6 +22,7 @@ public class Playlist {
     public Playlist() {
         this.listaMediaPlaylist = new HashMap<String, Media>();
         this.idPlaylist = 0;
+        this.nome="";
     }
 
     public Playlist(HashMap<String, Media> listaMediaPlaylist, int idPlaylist){
@@ -31,6 +33,11 @@ public class Playlist {
     public Playlist(Playlist outraPlaylist) {
         this.listaMediaPlaylist = outraPlaylist.getListaMediaPlaylist();
         this.idPlaylist = outraPlaylist.getIdPlaylist();
+    }
+
+    public Playlist(int idPlaylist, String nome) {
+        this.idPlaylist = idPlaylist;
+        this.nome = nome;
     }
 
     /**
@@ -52,6 +59,16 @@ public class Playlist {
     public void setIdPlaylist(int idPlaylist) {
         this.idPlaylist = idPlaylist;
     }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+
 
     /**
      *

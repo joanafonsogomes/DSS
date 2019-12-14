@@ -10,7 +10,6 @@ public class Media {
      */
     private String idMedia;
     private String cat;
-    private Reprodutor rep;
     //para um primeiro teste:
     private String link;
     private String artista;
@@ -22,15 +21,13 @@ public class Media {
     public Media(String idMedia, String artista) {
         this.idMedia = idMedia;
         this.cat = "";
-        this.rep = new Reprodutor();
         this.link = "";
         this.artista = artista;
     }
 
-    public Media(String idMedia ,String cat,Reprodutor rep, String link, String artista){
+    public Media(String idMedia ,String cat,String link, String artista){
         this.idMedia= idMedia;
         this.cat= cat; //clone
-        this.rep= rep; //clone
         this.link = link;
         this.artista = artista;
     }
@@ -38,7 +35,6 @@ public class Media {
     public Media(Media outraMedia) {
         this.idMedia = outraMedia.getIdMedia();
         this.cat = outraMedia.getCat();
-        this.rep = outraMedia.getRep();
         this.link = outraMedia.getLink();
         this.artista = outraMedia.getArtista();
     }
@@ -63,13 +59,6 @@ public class Media {
         this.cat = cat;
     }
 
-    public Reprodutor getRep() {
-        return rep;
-    }
-
-    public void setRep(Reprodutor rep) {
-        this.rep = rep;
-    }
 
     public String getLink() {
         return link;
@@ -94,14 +83,13 @@ public class Media {
         Media media = (Media) o;
         return idMedia == media.idMedia &&
                 Objects.equals(cat, media.cat) &&
-                Objects.equals(rep, media.rep) &&
                 Objects.equals(link, media.link) &&
                 Objects.equals(artista, media.artista);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idMedia, cat, rep, link, artista);
+        return Objects.hash(idMedia, cat,link, artista);
     }
 
     /**
@@ -129,7 +117,6 @@ public class Media {
         return "BLogic.Media{" +
                 "idMedia=" + idMedia +
                 ", cat='" + cat + '\'' +
-                ", rep=" + rep +
                 ", link='" + link + '\'' +
                 '}';
     }

@@ -37,6 +37,14 @@ public class Utilizador {
         this.listaMediaUtilizadores = listaMediaUtilizadores;
     }
 
+    public Utilizador(HashMap<Integer, Playlist> listaPlaylists, String nome, String email, String pass){
+        this.listaPlaylists= listaPlaylists;
+        this.nome = nome;
+        this.email = email;
+        this.pass = pass;
+        this.listaMediaUtilizadores = new HashMap<>();
+    }
+
     public Utilizador(String nome, String email, String pass){
         this.listaPlaylists= new HashMap<>();
         this.nome = nome;

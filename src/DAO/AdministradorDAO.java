@@ -25,13 +25,13 @@ public class AdministradorDAO implements DAO<Administrador> {
         }
     }
 
-    public Administrador get(int id)
+    public Administrador get(String id)
     {
         try {
             con = connect();
             if (con != null) {
                 PreparedStatement pStm = con.prepareStatement("select * from Administrador where email=?");
-                pStm.setInt(1, id);
+                pStm.setString(1, id);
                 ResultSet rs = pStm.executeQuery();
                 if (rs.next()) {
                     return new Administrador(rs.getString("email"), rs.getString("pass"));
@@ -46,6 +46,11 @@ public class AdministradorDAO implements DAO<Administrador> {
                 }
 
         return new Administrador();
+    }
+
+    @Override
+    public Administrador get(int id) {
+        return null;
     }
 
     public List<Administrador> getAll () {

@@ -14,6 +14,8 @@ public class Biblioteca{
      */
     //private Collection<BLogic.Media> listaMediaBiblioteca;
     private HashMap<String,Media> listaMediaBiblioteca;
+    private int idBiblioteca;
+    private String nome;
 
     /**
      *
