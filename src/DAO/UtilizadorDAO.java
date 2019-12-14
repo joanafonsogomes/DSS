@@ -52,7 +52,7 @@ public class UtilizadorDAO implements DAO<Utilizador> {
                     map.put(idPlayList,p);
                  //   rs2.next();
                 }
-                PreparedStatement pStm3 = con.prepareStatement("select m.idMedia, m.nome, m.cat,m.artista,m.link from Media m, Utilizador_has_Media u where email=? and u.idUtilizador=email and u.idMedia=m.idMedia");
+                PreparedStatement pStm3 = con.prepareStatement("select m.idMedia, m.nome, m.cat,m.artista,m.link from Media m, Utilizador_has_Media u where email=? and u.email=email and u.idMedia=m.idMedia");
                 pStm3.setString(1,email);
                 ResultSet rs3 = pStm3.executeQuery();
                 HashMap<Integer, Media> map2 = new HashMap<>();
@@ -65,7 +65,7 @@ public class UtilizadorDAO implements DAO<Utilizador> {
                     Media media = new Media(idMedia, nome, cat, link, artista);
                     map2.put(idMedia, media);
                 }
-                return new Utilizador(map,user,e,pass,map2);
+                return new Utilizador(map,user,e,pass);
             }
         }
         catch (SQLException e) {
@@ -74,7 +74,7 @@ public class UtilizadorDAO implements DAO<Utilizador> {
         finally{
             Connect.close(con);
         }
-        return null;
+        return new Utilizador();
 
     }
 
@@ -139,6 +139,12 @@ public class UtilizadorDAO implements DAO<Utilizador> {
         } finally {
             Connect.close(con);
         }
+    }
+
+    public static void main(String[] args) {
+        UtilizadorDAO d = new UtilizadorDAO();
+        Utilizador u = d.get("tiaravalley@gmail.com");
+        System.out.println(u.toString());
     }
 }
 
