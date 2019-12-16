@@ -125,6 +125,9 @@ public class UtilizadorDAO implements DAO<Utilizador> {
 
     }
 
+
+
+
     //elimina um utilizador
     public void delete (Utilizador user){
         try {
