@@ -64,6 +64,18 @@ public class AdministradorDAO{
         return administradors;
     }
 
+    public int size() {
+        try {
+            con = connect();
+            int i = 0;
+            PreparedStatement pStm = con.prepareStatement("select email FROM Administrador");
+            ResultSet rs = pStm.executeQuery();
+            for (;rs.next();i++);
+            return i;
+        }
+        catch (Exception e) {throw new NullPointerException(e.getMessage());}
+    }
+
     //cria um administrador novo
     public void save (Administrador t) {
 

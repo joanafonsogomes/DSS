@@ -3,7 +3,6 @@ package DAO;
 
 import BLogic.Biblioteca;
 import BLogic.Media;
-import BLogic.Playlist;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -96,6 +95,17 @@ public class MediaDAO{
         }
     }
 
+    public int size() {
+        try {
+            con = connect();
+            int i = 0;
+            PreparedStatement pStm = con.prepareStatement("select idMedia FROM Media");
+            ResultSet rs = pStm.executeQuery();
+            for (;rs.next();i++);
+            return i;
+        }
+        catch (Exception e) {throw new NullPointerException(e.getMessage());}
+    }
 
 
     public void update (Media t){
@@ -115,6 +125,5 @@ public class MediaDAO{
             Connect.close(con);
         }
     }
-
 }
 

@@ -1,7 +1,6 @@
 package DAO;
 
 
-import BLogic.Administrador;
 import BLogic.Media;
 import BLogic.Playlist;
 import BLogic.Utilizador;
@@ -10,7 +9,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 import static DAO.Connect.connect;
 
@@ -100,6 +101,18 @@ public class PlaylistDAO{
         } finally {
             Connect.close(con);
         }
+    }
+
+    public int size() {
+        try {
+            con = connect();
+            int i = 0;
+            PreparedStatement pStm = con.prepareStatement("select idPlaylist FROM Playlist");
+            ResultSet rs = pStm.executeQuery();
+            for (;rs.next();i++);
+            return i;
+        }
+        catch (Exception e) {throw new NullPointerException(e.getMessage());}
     }
 
     public void update (Playlist t){

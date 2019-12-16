@@ -18,8 +18,18 @@ public class Media {
      *
      * Construtores
      */
-    public Media(int idMedia, String artista) {
+    public Media(){
         this.idMedia = 0;
+        this.nome = "n/a";
+        this.artista = "n/a";
+        this.cat = "n/a";
+        this.link = "n/a";
+
+
+    }
+
+    public Media(int idMedia, String artista) {
+        this.idMedia = idMedia++;
         this.nome = "";
         this.cat = "";
         this.link = "";

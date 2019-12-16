@@ -1,0 +1,17 @@
+<component name="libraryTable">
+  <library name="jmf-2.1.1e">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/Downloads/jmf-2.1.1e.jar!/" />
+      <root url="file://$USER_HOME$/Downloads" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="file://$USER_HOME$/Downloads/Guiao_4/src" />
+      <root url="file://$USER_HOME$/Downloads/PL5/src" />
+      <root url="file://$USER_HOME$/Downloads/PL6/src" />
+      <root url="file://$USER_HOME$/Downloads" />
+    </SOURCES>
+    <jarDirectory url="file://$USER_HOME$/Downloads" recursive="false" />
+    <jarDirectory url="file://$USER_HOME$/Downloads" recursive="false" type="SOURCES" />
+  </library>
+</component>

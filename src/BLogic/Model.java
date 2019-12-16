@@ -2,9 +2,6 @@ package BLogic;
 
 import DAO.*;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class Model {
 
     UtilizadorDAO userDAO;
@@ -39,6 +36,25 @@ public class Model {
             mediaDAO.save(s);
         }
     }*/
+
+    public void alteraCategoria(Integer media, String novCategoria, String email){
+        Utilizador user = userDAO.get(email);
+        Media med = mediaDAO.get(media);
+        if(user.getListaMediaUtilizadores().containsKey(med.getIdMedia())) {
+           Media inser = new Media(mediaDAO.size(),med.getNome(),novCategoria,med.getLink(),med.getArtista());
+           Biblioteca a = biblioDAO.get(2);
+           mediaDAO.save(med,a);
+        }
+    }
+
+
+
+    public void reproduzir(Integer idmedia){
+        Media media = mediaDAO.get(idmedia);
+        //metodo de reprodução
+    }
+
+
 
 
 

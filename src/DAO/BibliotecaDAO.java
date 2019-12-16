@@ -98,6 +98,18 @@ public class BibliotecaDAO{
         }
     }
 
+    public int size() {
+        try {
+            con = connect();
+            int i = 0;
+            PreparedStatement pStm = con.prepareStatement("select idBiblioteca FROM Biblioteca");
+            ResultSet rs = pStm.executeQuery();
+            for (;rs.next();i++);
+            return i;
+        }
+        catch (Exception e) {throw new NullPointerException(e.getMessage());}
+    }
+
     public void update (Biblioteca bib){
 
     }
