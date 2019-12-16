@@ -17,7 +17,7 @@ public class PlaylistDAO implements DAO<Playlist> {
 
     private Connection con;
 
-    private PlaylistDAO() {
+    public PlaylistDAO() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
         } catch (ClassNotFoundException e) {

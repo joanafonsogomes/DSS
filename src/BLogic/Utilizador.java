@@ -61,6 +61,7 @@ public class Utilizador {
         this.listaMediaUtilizadores = outroUtilizador.getListaMediaUtilizadores();
     }
 
+
     /**
      *
      * Getters e Setters

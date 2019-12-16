@@ -15,7 +15,7 @@ public class MediaDAO implements DAO<Media> {
 
     private Connection con;
 
-    private MediaDAO() {
+    public MediaDAO() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
         } catch (ClassNotFoundException e) {
