@@ -6,8 +6,8 @@ import java.sql.SQLException;
 
 public class Connect {
 
-    private static final String USERNAME = "root";
-    private static final String PASSWORD = "12345678";
+    private static final String USERNAME = "margarida";
+    private static final String PASSWORD = "123";
     private static final String URL = "localhost";
     private static final String SCHEMA = "DBdss";
 

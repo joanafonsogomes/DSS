@@ -11,7 +11,7 @@ import java.util.*;
 
 import static DAO.Connect.connect;
 
-public class MediaDAO implements DAO<Media> {
+public class MediaDAO{
 
     private Connection con;
 
@@ -21,11 +21,6 @@ public class MediaDAO implements DAO<Media> {
         } catch (ClassNotFoundException e) {
             throw new NullPointerException(e.getMessage());
         }
-    }
-
-    @Override
-    public Media get(String id) {
-        return null;
     }
 
     public Media get(int id){

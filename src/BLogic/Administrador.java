@@ -31,7 +31,7 @@ public class Administrador{
         if(!utilizadores.containsKey(email)) {
             Utilizador u = new Utilizador(listaPlaylists, email, nome, password,listaMediaUtilizadores);
             utilizadores.put(email,u.clone());
-            (new UtilizadorDAO()).save(u);
+            (new UtilizadorDAO()).save(u,this);
         }
     }
 

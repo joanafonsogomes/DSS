@@ -10,7 +10,7 @@ import java.util.*;
 
 import static DAO.Connect.connect;
 
-public class AdministradorDAO implements DAO<Administrador> {
+public class AdministradorDAO{
 
     private Connection con;
 
@@ -42,11 +42,6 @@ public class AdministradorDAO implements DAO<Administrador> {
                     Connect.close(con);
                 }
 
-        return null;
-    }
-
-    @Override
-    public Administrador get(int id) {
         return null;
     }
 

@@ -12,7 +12,7 @@ import java.util.*;
 
 import static DAO.Connect.connect;
 
-public class BibliotecaDAO implements DAO<Biblioteca> {
+public class BibliotecaDAO{
 
     private Connection con;
 
@@ -22,11 +22,6 @@ public class BibliotecaDAO implements DAO<Biblioteca> {
         } catch (ClassNotFoundException e) {
             throw new NullPointerException(e.getMessage());
         }
-    }
-
-    @Override
-    public Biblioteca get(String id) {
-        return null;
     }
 
     public Biblioteca get(int id){

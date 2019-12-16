@@ -13,7 +13,7 @@ import java.util.*;
 
 import static DAO.Connect.connect;
 
-public class PlaylistDAO implements DAO<Playlist> {
+public class PlaylistDAO{
 
     private Connection con;
 
@@ -23,11 +23,6 @@ public class PlaylistDAO implements DAO<Playlist> {
         } catch (ClassNotFoundException e) {
             throw new NullPointerException(e.getMessage());
         }
-    }
-
-    @Override
-    public Playlist get(String id) {
-        return null;
     }
 
     public Playlist get(int id){

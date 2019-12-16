@@ -1,5 +1,6 @@
 package DAO;
 
+import BLogic.Administrador;
 import BLogic.Media;
 import BLogic.Playlist;
 import BLogic.Utilizador;
@@ -14,7 +15,7 @@ import java.util.List;
 
 import static DAO.Connect.connect;
 
-public class UtilizadorDAO implements DAO<Utilizador> {
+public class UtilizadorDAO{
 
     private Connection con;
 
@@ -25,6 +26,8 @@ public class UtilizadorDAO implements DAO<Utilizador> {
             throw new NullPointerException(e.getMessage());
         }
     }
+
+
 
     public Utilizador get(String email){
         try {
@@ -41,14 +44,14 @@ public class UtilizadorDAO implements DAO<Utilizador> {
                     e = rs.getString("email");
                     pass= rs.getString("pass");
                 }
-                PreparedStatement pStm2 = con.prepareStatement("select * from Playlist where emailUtilizador=?");
+                PreparedStatement pStm2 = con.prepareStatement("select p.idPlaylist from Playlist p where p.emailUtilizador=? ");
                 pStm2.setString(1, email);
                 ResultSet rs2 = pStm2.executeQuery();
                 HashMap<Integer, Playlist> map = new HashMap<>();
                 while (rs2.next()){
                     int idPlayList = rs2.getInt("idPlaylist");
-                    String nome = rs2.getString("nome");
-                    Playlist p = new Playlist(idPlayList,nome);
+                    PlaylistDAO pd = new PlaylistDAO();
+                    Playlist p = pd.get(idPlayList);
                     map.put(idPlayList,p);
                  //   rs2.next();
                 }
@@ -65,7 +68,7 @@ public class UtilizadorDAO implements DAO<Utilizador> {
                     Media media = new Media(idMedia, nome, cat, link, artista);
                     map2.put(idMedia, media);
                 }
-                return new Utilizador(map,user,e,pass);
+                return new Utilizador(map,user,e,pass,map2);
             }
         }
         catch (SQLException e) {
@@ -78,10 +81,6 @@ public class UtilizadorDAO implements DAO<Utilizador> {
 
     }
 
-    @Override
-    public Utilizador get(int id) {
-        return null;
-    }
 
     public List<Utilizador> getAll () {
         List<Utilizador> users = new ArrayList<>();
@@ -103,14 +102,15 @@ public class UtilizadorDAO implements DAO<Utilizador> {
     }
 
     //cria um novo utilizador
-    public void save (Utilizador user) {
+    public void save (Utilizador user, Administrador admin) {
         try {
             con = connect();
             if(con != null) {
-                PreparedStatement pStm = con.prepareStatement("insert into Utilizador(nome,email,pass) values (?,?,?) ");
+                PreparedStatement pStm = con.prepareStatement("insert into Utilizador(nome,email,pass,emailAdmin) values (?,?,?,?) ");
                 pStm.setString(1, user.getNome());
                 pStm.setString(2, user.getEmail());
                 pStm.setString(3, user.getPass());
+                pStm.setString(4, admin.getEmail());
                 pStm.execute();
             }
         } catch (SQLException e) {

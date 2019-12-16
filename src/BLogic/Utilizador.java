@@ -20,13 +20,13 @@ public class Utilizador {
     private HashMap<Integer, Media> listaMediaUtilizadores;
 
 
-    public Utilizador() {
+    public Utilizador(Administrador admin) {
         this.listaPlaylists = new HashMap<Integer, Playlist>();
         this.nome = "";
         this.email = "";
         this.pass = "";
         this.listaMediaUtilizadores = new HashMap<Integer, Media>();
-        (new UtilizadorDAO()).save(this);
+        (new UtilizadorDAO()).save(this,admin);
     }
 
     public Utilizador(HashMap<Integer, Playlist> listaPlaylists, String nome, String email, String pass, HashMap<Integer, Media>listaMediaUtilizadores){
@@ -59,6 +59,14 @@ public class Utilizador {
         this.email = outroUtilizador.getEmail();
         this.pass = outroUtilizador.getPass();
         this.listaMediaUtilizadores = outroUtilizador.getListaMediaUtilizadores();
+    }
+
+    public Utilizador() {
+        this.listaPlaylists = new HashMap<Integer, Playlist>();
+        this.nome = "";
+        this.email = "";
+        this.pass = "";
+        this.listaMediaUtilizadores = new HashMap<Integer, Media>();
     }
 
 
