@@ -127,10 +127,12 @@ public class Media {
      */
     @Override
     public String toString() {
-        return "BLogic.Media{" +
-                "nome=" + nome +
+        return "Media{" +
+                "idMedia=" + idMedia +
+                ", nome='" + nome + '\'' +
                 ", cat='" + cat + '\'' +
                 ", link='" + link + '\'' +
+                ", artista='" + artista + '\'' +
                 '}';
     }
 

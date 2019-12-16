@@ -4,6 +4,7 @@ package DAO;
 import BLogic.Administrador;
 import BLogic.Media;
 import BLogic.Playlist;
+import BLogic.Utilizador;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -84,13 +85,14 @@ public class PlaylistDAO{
         return playlists;
     }
 
-    public void save (Playlist playlist) {
+    public void save (Playlist playlist,Utilizador u) {
         try {
             con = connect();
             if(con != null) {
-                PreparedStatement pStm = con.prepareStatement("insert into Playlist(idPlaylist,nome) values (?,?,?) ");
+                PreparedStatement pStm = con.prepareStatement("insert into Playlist(idPlaylist,nome,emailUtilizador) values (?,?,?) ");
                 pStm.setInt(1, playlist.getIdPlaylist());
                 pStm.setString(2, playlist.getNome());
+                pStm.setString(3, u.getEmail());
                 pStm.execute();
             }
         } catch (SQLException e) {
@@ -117,5 +119,6 @@ public class PlaylistDAO{
             Connect.close(con);
         }
     }
+
 }
 

@@ -1,9 +1,6 @@
 package DAO;
 
-import BLogic.Administrador;
-import BLogic.Media;
-import BLogic.Playlist;
-import BLogic.Utilizador;
+import BLogic.*;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -26,7 +23,6 @@ public class UtilizadorDAO{
             throw new NullPointerException(e.getMessage());
         }
     }
-
 
 
     public Utilizador get(String email){
@@ -121,6 +117,22 @@ public class UtilizadorDAO{
 
     }
 
+    public void saveMedia(int idMedia,Utilizador user){
+        try {
+            con = connect();
+            if(con != null) {
+                PreparedStatement pStm = con.prepareStatement("insert into Utilizador_has_Media(email,idMedia) values (?,?) ");
+                pStm.setString(1, user.getEmail());
+                pStm.setInt(2, idMedia);
+                pStm.execute();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            Connect.close(con);
+        }
+    }
+
     public void update (Utilizador user){
 
     }
@@ -141,10 +153,5 @@ public class UtilizadorDAO{
         }
     }
 
-    public static void main(String[] args) {
-        UtilizadorDAO d = new UtilizadorDAO();
-        Utilizador u = d.get("tiaravalley@gmail.com");
-        System.out.println(u.toString());
-    }
 }
 

@@ -32,13 +32,13 @@ public class Model {
             return u;
         } else return null;
     }
-
+/*
     public void upload(Media s){
         Media m = mediaDAO.get(s.getIdMedia());
         if(m!=null && !(s.equals(m.getIdMedia()))){
             mediaDAO.save(s);
         }
-    }
+    }*/
 
 
 

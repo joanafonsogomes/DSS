@@ -25,7 +25,7 @@ public class Playlist {
         this.nome="";
     }
 
-    public Playlist(HashMap<Integer, Media> listaMediaPlaylist, int idPlaylist,String nome){
+    public Playlist(HashMap<Integer, Media> listaMediaPlaylist, int idPlaylist, String nome){
         this.listaMediaPlaylist= listaMediaPlaylist;
         this.idPlaylist = idPlaylist; //clone
         this.nome = nome;
@@ -100,9 +100,10 @@ public class Playlist {
      */
     @Override
     public String toString() {
-        return "BLogic.Playlist{" +
+        return "Playlist{" +
                 "listaMediaPlaylist=" + listaMediaPlaylist +
                 ", idPlaylist=" + idPlaylist +
+                ", nome='" + nome + '\'' +
                 '}';
     }
 

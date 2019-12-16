@@ -1,7 +1,9 @@
 package DAO;
 
 
+import BLogic.Biblioteca;
 import BLogic.Media;
+import BLogic.Playlist;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -74,16 +76,17 @@ public class MediaDAO{
         return medias;
     }
 
-    public void save (Media t) {
+    public void save (Media t, Biblioteca b) {
         try {
             con = connect();
             if(con != null) {
-                PreparedStatement pStm = con.prepareStatement("insert into Media(idMedia,nome,cat,link,artista) values (?,?,?,?,?) ");
+                PreparedStatement pStm = con.prepareStatement("insert into Media(idMedia,nome,cat,link,artista,biblioteca) values (?,?,?,?,?,?) ");
                 pStm.setInt(1, t.getIdMedia());
                 pStm.setString(2, t.getNome());
                 pStm.setString(3, t.getCat());
                 pStm.setString(4, t.getLink());
                 pStm.setString(5, t.getArtista());
+                pStm.setInt(6, b.getIdBiblioteca());
                 pStm.execute();
             }
         } catch (SQLException e) {
@@ -91,8 +94,9 @@ public class MediaDAO{
         } finally {
             Connect.close(con);
         }
-
     }
+
+
 
     public void update (Media t){
 
@@ -111,5 +115,6 @@ public class MediaDAO{
             Connect.close(con);
         }
     }
+
 }
 
