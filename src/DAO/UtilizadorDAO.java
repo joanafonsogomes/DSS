@@ -143,8 +143,8 @@ public class UtilizadorDAO implements DAO<Utilizador> {
 
     public static void main(String[] args) {
         UtilizadorDAO d = new UtilizadorDAO();
-        Utilizador u = d.get("tiaravalley@gmail.com");
-        System.out.println(u.getEmail());
+        Utilizador u = new Utilizador(nome, email, pass);
+        d.save(u);
     }
 
 }
