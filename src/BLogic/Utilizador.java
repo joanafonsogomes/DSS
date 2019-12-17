@@ -13,6 +13,7 @@ public class Utilizador {
      *
      * Variáveis de instância
      */
+
     private HashMap<Integer, Playlist> listaPlaylists;
     private String nome;
     private String email;
@@ -68,8 +69,10 @@ public class Utilizador {
         this.pass = "";
         this.listaMediaUtilizadores = new HashMap<Integer, Media>();
     }
-
-
+    public void adicionaMedia(Media m){
+        listaMediaUtilizadores.put(m.getIdMedia(),m);
+        (new UtilizadorDAO()).saveMedia(m.getIdMedia(),this.getEmail());
+    }
     /**
      *
      * Getters e Setters

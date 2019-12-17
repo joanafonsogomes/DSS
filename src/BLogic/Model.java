@@ -29,21 +29,23 @@ public class Model {
             return u;
         } else return null;
     }
-/*
-    public void upload(Media s){
+
+    public void upload(Media s,String user){
+        Utilizador u= userDAO.get(user);
         Media m = mediaDAO.get(s.getIdMedia());
-        if(m!=null && !(s.equals(m.getIdMedia()))){
-            mediaDAO.save(s);
+        if(m!=null){
+            Media newM = new Media(s,1);
+            userDAO.saveMedia(m.getIdMedia(),user);
         }
-    }*/
+        else if(!u.getListaMediaUtilizadores().containsKey(s.getIdMedia())) userDAO.saveMedia(m.getIdMedia(),user);
+    }
 
     public void alteraCategoria(Integer media, String novCategoria, String email){
         Utilizador user = userDAO.get(email);
         Media med = mediaDAO.get(media);
         if(user.getListaMediaUtilizadores().containsKey(med.getIdMedia())) {
-           Media inser = new Media(mediaDAO.size(),med.getNome(),novCategoria,med.getLink(),med.getArtista());
-           Biblioteca a = biblioDAO.get(2);
-           mediaDAO.save(med,a);
+           Media inser = new Media(mediaDAO.size(),med.getNome(),novCategoria,med.getLink(),med.getArtista(),2);
+           mediaDAO.save(med,2);
         }
     }
 

@@ -1,9 +1,6 @@
 package DAO;
 
-import BLogic.Administrador;
-import BLogic.Media;
-import BLogic.Playlist;
-import BLogic.Utilizador;
+import BLogic.*;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -18,7 +15,7 @@ import static DAO.Connect.connect;
 public class UtilizadorDAO{
 
     private Connection con;
-
+    private static UtilizadorDAO inst = null;
     public UtilizadorDAO() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
@@ -26,7 +23,6 @@ public class UtilizadorDAO{
             throw new NullPointerException(e.getMessage());
         }
     }
-
 
 
     public Utilizador get(String email){
@@ -65,7 +61,8 @@ public class UtilizadorDAO{
                     String artista = rs3.getString("artista");
                     String cat = rs3.getString("cat");
                     String link = rs3.getString("link");
-                    Media media = new Media(idMedia, nome, cat, link, artista);
+                    int biblioteca=rs3.getInt("bibliotca");
+                    Media media = new Media(idMedia, nome, cat, link, artista,biblioteca);
                     map2.put(idMedia, media);
                 }
                 return new Utilizador(map,user,e,pass,map2);
@@ -121,6 +118,22 @@ public class UtilizadorDAO{
 
     }
 
+    public void saveMedia(int idMedia,String user){
+        try {
+            con = connect();
+            if(con != null) {
+                PreparedStatement pStm = con.prepareStatement("insert into Utilizador_has_Media(email,idMedia) values (?,?) ");
+                pStm.setString(1, user);
+                pStm.setInt(2, idMedia);
+                pStm.execute();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            Connect.close(con);
+        }
+    }
+
     public void update (Utilizador user){
 
     }
@@ -140,7 +153,6 @@ public class UtilizadorDAO{
             Connect.close(con);
         }
     }
-
 
 }
 

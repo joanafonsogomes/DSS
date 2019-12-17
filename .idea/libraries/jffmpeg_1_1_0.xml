@@ -1,8 +1,7 @@
 <component name="libraryTable">
   <library name="jffmpeg-1.1.0">
     <CLASSES>
-      <root url="jar://$USER_HOME$/Downloads/jffmpeg-1.1.0.jar!/" />
-      <root url="jar://$USER_HOME$/Downloads/jmf-2.1.1e.jar!/" />
+      <root url="jar://$USER_HOME$/Music/jffmpeg-1.1.0.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

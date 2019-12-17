@@ -3,6 +3,7 @@ package DAO;
 
 import BLogic.Biblioteca;
 import BLogic.Media;
+import BLogic.Playlist;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -36,14 +37,16 @@ public class MediaDAO{
                 String cat=null;
                 String link=null;
                 String artista=null;
+                int biblioteca=0;
                 if (rs.next()) {
                     idMedia = rs.getInt("idMedia");
                     nome = rs.getString("nome");
                     cat = rs.getString("cat");
                     link = rs.getString("nome");
                     artista = rs.getString("artista");
+                    biblioteca=rs.getInt("biblioteca");
                 }
-                return new Media(idMedia,nome,cat,link,artista);
+                return new Media(idMedia,nome,cat,link,artista,biblioteca);
             }
         }
         catch (SQLException e) {
@@ -64,7 +67,7 @@ public class MediaDAO{
                 PreparedStatement pStm = con.prepareStatement("select * from Utilizador");
                 ResultSet rs = pStm.executeQuery();
                 while(rs.next()) {
-                    medias.add(new Media(rs.getInt("idMedia"),rs.getString("nome"),rs.getString("cat"),rs.getString("link"),rs.getString("artista")));
+                    medias.add(new Media(rs.getInt("idMedia"),rs.getString("nome"),rs.getString("cat"),rs.getString("link"),rs.getString("artista"),rs.getInt("biblioteca")));
                 }
             }
         } catch (SQLException e) {
@@ -75,7 +78,8 @@ public class MediaDAO{
         return medias;
     }
 
-    public void save (Media t, Biblioteca b) {
+
+    public void save (Media t,int b) {
         try {
             con = connect();
             if(con != null) {
@@ -85,7 +89,7 @@ public class MediaDAO{
                 pStm.setString(3, t.getCat());
                 pStm.setString(4, t.getLink());
                 pStm.setString(5, t.getArtista());
-                pStm.setInt(6, b.getIdBiblioteca());
+                pStm.setInt(6, b);
                 pStm.execute();
             }
         } catch (SQLException e) {
@@ -106,8 +110,6 @@ public class MediaDAO{
         }
         catch (Exception e) {throw new NullPointerException(e.getMessage());}
     }
-
-
     public void update (Media t){
 
     }
@@ -125,5 +127,6 @@ public class MediaDAO{
             Connect.close(con);
         }
     }
+
 }
 

@@ -51,7 +51,8 @@ public class PlaylistDAO{
                     String artista = rs2.getString("artista");
                     String cat = rs2.getString("cat");
                     String link = rs2.getString("link");
-                    Media media = new Media(idMedia, nome, cat, link, artista);
+                    int biblioteca=rs2.getInt("biblioteca");
+                    Media media = new Media(idMedia, nome, cat, link, artista,biblioteca);
                     map.put(idMedia, media);
                 }
                 return new Playlist(map, idPlaylist,nomeP);

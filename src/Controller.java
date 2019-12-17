@@ -2,6 +2,8 @@ import BLogic.Model;
 
 public class Controller {
     private Model model;
-    // view;
+    private Take2 view;
+
+    
 
 }

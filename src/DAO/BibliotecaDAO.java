@@ -47,7 +47,8 @@ public class BibliotecaDAO{
                     String artista = rs3.getString("artista");
                     String cat = rs3.getString("cat");
                     String link = rs3.getString("link");
-                    Media media = new Media(idMedia, nome, cat, link, artista);
+                    int biblioteca=rs3.getInt("biblioteca");
+                    Media media = new Media(idMedia, nome, cat, link, artista,biblioteca);
                     map2.put(idMedia, media);
                 }
                 return new Biblioteca(idBiblioteca,nomeB,map2);
