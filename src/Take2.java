@@ -1,4 +1,5 @@
 import BLogic.Media;
+import BLogic.Model;
 import BLogic.Playlist;
 import BLogic.Utilizador;
 
@@ -13,6 +14,7 @@ import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 //import java.awt.BorderLayout;
@@ -28,13 +30,12 @@ import org.apache.tika.sax.BodyContentHandler;*/
 
 public class Take2 extends javax.swing.JFrame {
 
+    Model model = new Model();
+    private int idPlaylistAtual = -1;
+    private int idMediaAtual = -1;
+    private String idUtilizadorAtual="";
     private Clip clip;
     private long clipTimePosition = 0;
-
-    //private Media m0, m1, m2, m3, m4, m5, m6, m7, m8, m9, m10, m11, m12, m13, m14, m15;
-    //private Playlist playlist1;
-    //private Utilizador user1;
-
     private int playlistPos = 0;
 
     private Playlist playlistAtual;
@@ -46,14 +47,11 @@ public class Take2 extends javax.swing.JFrame {
     String[] strarray = newList.toArray(new String[0]);
     */
 
-    private String[] playlistArray = new String[10];//= {"musica1 nome","musica2 nome","musica3 nome"};
-    private String[] musicasArray = new String[50];//= {"musica1 nome","musica2 nome","musica3 nome"};
-
+   private ArrayList<Integer> playlistArray = new ArrayList<>();//= {"musica1 nome","musica2 nome","musica3 nome"};
+    private ArrayList<Integer> musicasArray = new ArrayList<Integer>();//= {"musica1 nome","musica2 nome","musica3 nome"};
     private Player playerAtual;
-
     private Utilizador user1;
-
-    private String musicaAtual = "Música";
+   private String musicaAtual = "Música";
     private String artAtual = "Artista";
     private String catAtual = "Categoria";
 
@@ -103,7 +101,7 @@ public class Take2 extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         musicList = new javax.swing.JList<>();
         jScrollPane2 = new javax.swing.JScrollPane();
-        playlistList = new javax.swing.JList<String>(this.playlistArray);
+        playlistList = new javax.swing.JList<String>((ListModel<String>) this.playlistArray);
 
         jMenuItem1.setText("jMenuItem1");
 
@@ -587,7 +585,8 @@ public class Take2 extends javax.swing.JFrame {
     private void playActionPerformed(java.awt.event.ActionEvent evt) {
         //while(this.playlistPos <= 3){
         String linkMedia = this.playlistAtual.getListaMediaPlaylist().get(this.playlistPos).getLink();
-        //this.musicaAtual = "Olaaaaa";
+        //this.
+        // tual = "Olaaaaa";
         playMedia(linkMedia);
         //this.musicaAtual = this.playlist1.getListaMediaPlaylist().get(this.playlistPos).getNome();
         //this.catAtual = this.playlist1.getListaMediaPlaylist().get(this.playlistPos).getCat();
@@ -659,7 +658,13 @@ public class Take2 extends javax.swing.JFrame {
     private void passInputKeyPressed(java.awt.event.KeyEvent evt) {
         if(evt.getKeyCode()==KeyEvent.VK_ENTER){
             String passText = new String(passInput.getPassword());
-            if((userInput.getText().equals(this.user1.getEmail())) && (passText.equals(this.user1.getPass()))){
+            String emailText = new String(userInput.getText());
+            Utilizador user = model.entraUtilizador(emailText,passText);
+
+            if(user!=null){
+                this.idUtilizadorAtual = emailText;
+                this.playlistArray = model.buscaPlaylist(emailText);
+                this.musicasArray = model.buscaMedia(emailText);
                 loginWindow.setVisible(false);
                 this.setVisible(true);
             }
@@ -674,10 +679,12 @@ public class Take2 extends javax.swing.JFrame {
     }
 
     private void playlistListMouseClicked(java.awt.event.MouseEvent evt) {
-        int index = playlistList.locationToIndex(evt.getPoint());
+        int index= playlistList.locationToIndex(evt.getPoint());
         //System.out.println(index);
         int pos = index + 1;
-        this.playlistAtual = user1.getListaPlaylists().get(pos);
+
+        idPlaylistAtual=pos;
+
         //this.playlistAtual = user1.getListaPlaylists().get(1);
         //System.out.println(this.playlistAtual.getNome());
         //this.musicList =
@@ -696,6 +703,8 @@ public class Take2 extends javax.swing.JFrame {
             this.clip.stop();
             //this.playerAtual.close();
             playMedia(linkMedia);
+
+            idMediaAtual=index;
         }
         else{
             String linkMedia = this.playlistAtual.getListaMediaPlaylist().get(this.playlistPos).getLink();
@@ -754,6 +763,7 @@ public class Take2 extends javax.swing.JFrame {
     /**
      * Creates new form App
      */
+
     public Take2() {
         /*TEST MEDIA, PLAYLIST AND USER*/
         Media m0, m1, m2, m3, m4, m5, m6, m7, m8, m9, m10, m11, m12, m13, m14, m15 = new Media().clone();
@@ -1025,7 +1035,7 @@ public class Take2 extends javax.swing.JFrame {
     }
     */
 
-
+/*
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -1052,7 +1062,7 @@ public class Take2 extends javax.swing.JFrame {
         pl1.put(2,m2);
         pl1.put(3,m3);
         playlist1.setListaMediaPlaylist(pl1);*/
-
+/*
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -1093,6 +1103,7 @@ public class Take2 extends javax.swing.JFrame {
         */
 
         /* Create and display the form */
+    /*
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Take2().setVisible(true);

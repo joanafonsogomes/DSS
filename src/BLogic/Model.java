@@ -2,6 +2,9 @@ package BLogic;
 
 import DAO.*;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 public class Model {
 
     UtilizadorDAO userDAO;
@@ -28,6 +31,31 @@ public class Model {
         if (u != null && u.getPass().equals(pass)) {
             return u;
         } else return null;
+    }
+
+    public Playlist playlistRespetiva(String email, int playlist){
+        Playlist nov = new Playlist();
+        return null;
+    }
+
+    public ArrayList<Integer> buscaPlaylist(String email){
+        Utilizador u = userDAO.get(email);
+        HashMap<Integer, Playlist> m= u.getListaPlaylists();
+        ArrayList<Integer> dev =  new ArrayList<>();
+        for(Integer i : m.keySet()){
+            dev.add(i);
+        }
+        return dev;
+    }
+
+    public ArrayList<Integer> buscaMedia(String email){
+        Utilizador u = userDAO.get(email);
+        HashMap<Integer, Media> m= u.getListaMediaUtilizadores();
+        ArrayList<Integer> dev =  new ArrayList<>();
+        for(Integer i : m.keySet()){
+            dev.add(i);
+        }
+        return dev;
     }
 
     public void upload(Media s,String user){
