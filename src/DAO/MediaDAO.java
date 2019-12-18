@@ -64,7 +64,7 @@ public class MediaDAO{
         try {
             con = connect();
             if(con != null) {
-                PreparedStatement pStm = con.prepareStatement("select * from Utilizador");
+                PreparedStatement pStm = con.prepareStatement("select * from Media");
                 ResultSet rs = pStm.executeQuery();
                 while(rs.next()) {
                     medias.add(new Media(rs.getInt("idMedia"),rs.getString("nome"),rs.getString("cat"),rs.getString("link"),rs.getString("artista"),rs.getInt("biblioteca")));
@@ -83,13 +83,13 @@ public class MediaDAO{
         try {
             con = connect();
             if(con != null) {
-                PreparedStatement pStm = con.prepareStatement("insert into Media(idMedia,nome,cat,link,artista,biblioteca) values (?,?,?,?,?,?) ");
+                PreparedStatement pStm = con.prepareStatement("insert into Media(idMedia,nome,artista,cat,biblioteca,link) values (?,?,?,?,?,?) ");
                 pStm.setInt(1, t.getIdMedia());
                 pStm.setString(2, t.getNome());
-                pStm.setString(3, t.getCat());
-                pStm.setString(4, t.getLink());
-                pStm.setString(5, t.getArtista());
-                pStm.setInt(6, b);
+                pStm.setString(3, t.getArtista());
+                pStm.setString(4, t.getCat());
+                pStm.setInt(5, b);
+                pStm.setString(6, t.getLink());
                 pStm.execute();
             }
         } catch (SQLException e) {

@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static DAO.Connect.connect;
 
@@ -51,17 +52,18 @@ public class UtilizadorDAO{
                     map.put(idPlayList,p);
                  //   rs2.next();
                 }
-                PreparedStatement pStm3 = con.prepareStatement("select m.idMedia, m.nome, m.cat,m.artista,m.link from Media m, Utilizador_has_Media u where email=? and u.email=email and u.idMedia=m.idMedia");
+                PreparedStatement pStm3 = con.prepareStatement("select m.idMedia, m.nome, m.cat,m.artista,m.link,m.biblioteca from Media m, Utilizador_has_Media u where email=? and u.email=email and u.idMedia=m.idMedia");
                 pStm3.setString(1,email);
                 ResultSet rs3 = pStm3.executeQuery();
                 HashMap<Integer, Media> map2 = new HashMap<>();
                 while (rs3.next()) {
                     int idMedia = rs3.getInt("idMedia");
                     String nome = rs3.getString("nome");
+                    int biblioteca=rs3.getInt("biblioteca");
                     String artista = rs3.getString("artista");
                     String cat = rs3.getString("cat");
                     String link = rs3.getString("link");
-                    int biblioteca=rs3.getInt("bibliotca");
+
                     Media media = new Media(idMedia, nome, cat, link, artista,biblioteca);
                     map2.put(idMedia, media);
                 }
@@ -74,20 +76,20 @@ public class UtilizadorDAO{
         finally{
             Connect.close(con);
         }
-        return new Utilizador();
+        return null;
 
     }
 
 
-    public List<Utilizador> getAll () {
-        List<Utilizador> users = new ArrayList<>();
+    public HashMap<String,Utilizador> getAll () {
+       HashMap<String,Utilizador> users = new HashMap<>();
         try {
             con = connect();
             if(con != null) {
                 PreparedStatement pStm = con.prepareStatement("select * from Utilizador");
                 ResultSet rs = pStm.executeQuery();
                 while(rs.next()) {
-                    users.add(new Utilizador(rs.getString("nome"),rs.getString("email"),rs.getString("pass")));
+                    users.put(rs.getString("email"),(new Utilizador(rs.getString("nome"),rs.getString("email"),rs.getString("pass"))));
                 }
             }
         } catch (SQLException e) {

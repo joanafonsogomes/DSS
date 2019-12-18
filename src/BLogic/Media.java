@@ -16,7 +16,7 @@ public class Media {
     private String cat;
     private String link;
     private String artista;
-
+    private int biblioteca;
 
 
     /**
@@ -47,7 +47,8 @@ public class Media {
         this.cat= cat; //clone
         this.link = link;
         this.artista = artista;
-        (new MediaDAO()).save(this,b);
+        this.biblioteca=b;
+        //(new MediaDAO()).save(this,b);
     }
 
     public Media(Media outraMedia,int b) {
@@ -56,7 +57,7 @@ public class Media {
         this.cat = outraMedia.getCat();
         this.link = outraMedia.getLink();
         this.artista = outraMedia.getArtista();
-        (new MediaDAO()).save(this,b);
+        //(new MediaDAO()).save(this,b);
     }
 
     public int getIdMedia() {
