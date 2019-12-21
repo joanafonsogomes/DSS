@@ -1,4 +1,5 @@
 import BLogic.Media;
+import BLogic.Model;
 import BLogic.Playlist;
 import BLogic.Utilizador;
 
@@ -28,6 +29,15 @@ import org.apache.tika.sax.BodyContentHandler;*/
 
 public class Take2 extends javax.swing.JFrame {
 
+
+    Model model = new Model();
+    private int idPlaylistAtual = -1;
+
+    private int idMediaAtual = -1;
+    private String idUtilizadorAtual="";
+    private Utilizador userAtual;
+
+
     private Clip clip;
     private long clipTimePosition = 0;
 
@@ -37,7 +47,7 @@ public class Take2 extends javax.swing.JFrame {
 
     private int playlistPos = 0;
 
-    private Playlist playlistAtual;
+    private Playlist playlistAtual=new Playlist();
     /*
     POR ISTO DEPOIS DE TER A PLAYLIST DE CADA UM COM AS MUSICAS NO PLAYER
     private HashMap teste = this.playlistAtual.getListaMediaPlaylist();
@@ -46,8 +56,8 @@ public class Take2 extends javax.swing.JFrame {
     String[] strarray = newList.toArray(new String[0]);
     */
 
-    private String[] playlistArray = new String[10];//= {"musica1 nome","musica2 nome","musica3 nome"};
-    private String[] musicasArray = new String[50];//= {"musica1 nome","musica2 nome","musica3 nome"};
+    private String[] playlistArray = {"musica1 nome","musica2 nome","musica3 nome"};
+    private String[] musicasArray = {"musica1 nome","musica2 nome","musica3 nome"};
 
     private Player playerAtual;
 
@@ -585,14 +595,14 @@ public class Take2 extends javax.swing.JFrame {
     }
 
     private void playActionPerformed(java.awt.event.ActionEvent evt) {
-        //while(this.playlistPos <= 3){
+        //while(this.playlistPos <= this){
         String linkMedia = this.playlistAtual.getListaMediaPlaylist().get(this.playlistPos).getLink();
         //this.musicaAtual = "Olaaaaa";
         playMedia(linkMedia);
         //this.musicaAtual = this.playlist1.getListaMediaPlaylist().get(this.playlistPos).getNome();
         //this.catAtual = this.playlist1.getListaMediaPlaylist().get(this.playlistPos).getCat();
-        //}
-    }
+        }
+
 
     private void pauseActionPerformed(java.awt.event.ActionEvent evt) {
         pauseMedia();
@@ -659,7 +669,15 @@ public class Take2 extends javax.swing.JFrame {
     private void passInputKeyPressed(java.awt.event.KeyEvent evt) {
         if(evt.getKeyCode()==KeyEvent.VK_ENTER){
             String passText = new String(passInput.getPassword());
-            if((userInput.getText().equals(this.user1.getEmail())) && (passText.equals(this.user1.getPass()))){
+            String emailText = userInput.getText();
+            Utilizador user = model.entraUtilizador(emailText,passText);
+
+            if(user!=null){
+              //  userAtual=model.getUser(emailText);
+                this.idUtilizadorAtual = emailText;
+                this.playlistAtual=model.getPlaylist(idUtilizadorAtual);
+                this.playlistArray = model.buscaPlaylist(emailText);
+                this.musicasArray = model.buscaMedia(emailText);
                 loginWindow.setVisible(false);
                 this.setVisible(true);
             }
@@ -677,7 +695,7 @@ public class Take2 extends javax.swing.JFrame {
         int index = playlistList.locationToIndex(evt.getPoint());
         //System.out.println(index);
         int pos = index + 1;
-        this.playlistAtual = user1.getListaPlaylists().get(pos);
+        this.playlistAtual = userAtual.getListaPlaylists().get(pos);
         //this.playlistAtual = user1.getListaPlaylists().get(1);
         //System.out.println(this.playlistAtual.getNome());
         //this.musicList =
@@ -756,7 +774,7 @@ public class Take2 extends javax.swing.JFrame {
      */
     public Take2() {
         /*TEST MEDIA, PLAYLIST AND USER*/
-        Media m0, m1, m2, m3, m4, m5, m6, m7, m8, m9, m10, m11, m12, m13, m14, m15 = new Media().clone();
+        /*Media m0, m1, m2, m3, m4, m5, m6, m7, m8, m9, m10, m11, m12, m13, m14, m15 = new Media();
         m0 = new Media();
         m0.setIdMedia(0);
         m0.setLink("seeYouAgain.wav");
