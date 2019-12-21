@@ -25,8 +25,8 @@ public class Playlist {
         this.nome="";
     }
 
-    public Playlist(HashMap<Integer, Media> listaMediaPlaylist, int idPlaylist, String nome){
-        this.listaMediaPlaylist= listaMediaPlaylist;
+    public Playlist(HashMap<Integer, Media> l, int idPlaylist, String nome){
+        this.listaMediaPlaylist= l;
         this.idPlaylist = idPlaylist; //clone
         this.nome = nome;
     }

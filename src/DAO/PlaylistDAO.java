@@ -50,8 +50,8 @@ public class PlaylistDAO{
                     String nome = rs2.getString("nome");
                     String artista = rs2.getString("artista");
                     String cat = rs2.getString("cat");
-                    String link = rs2.getString("link");
                     int biblioteca=rs2.getInt("biblioteca");
+                    String link = rs2.getString("link");
                     Media media = new Media(idMedia, nome, cat, link, artista,biblioteca);
                     map.put(idMedia, media);
                 }
@@ -68,15 +68,15 @@ public class PlaylistDAO{
         return null;
     }
 
-    public List<Playlist> getAll () {
-        List<Playlist> playlists = new ArrayList<>();
+    public HashMap<Integer,Playlist> getAll () {
+        HashMap<Integer,Playlist> playlists = new HashMap<>();
         try {
             con = connect();
             if(con != null) {
                 PreparedStatement pStm = con.prepareStatement("select * from Playlist");
                 ResultSet rs = pStm.executeQuery();
                 while(rs.next()) {
-                    playlists.add(new Playlist(rs.getInt("idPlaylist"),rs.getString("nome")));
+                    playlists.put(rs.getInt("idPlaylist"),new Playlist(rs.getInt("idPlaylist"),rs.getString("nome")));
                 }
             }
         } catch (SQLException e) {

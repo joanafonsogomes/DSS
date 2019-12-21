@@ -79,15 +79,15 @@ public class UtilizadorDAO{
     }
 
 
-    public List<Utilizador> getAll () {
-        List<Utilizador> users = new ArrayList<>();
+    public HashMap<String,Utilizador> getAll () {
+        HashMap<String,Utilizador> users = new HashMap<>();
         try {
             con = connect();
             if(con != null) {
                 PreparedStatement pStm = con.prepareStatement("select * from Utilizador");
                 ResultSet rs = pStm.executeQuery();
                 while(rs.next()) {
-                    users.add(new Utilizador(rs.getString("nome"),rs.getString("email"),rs.getString("pass")));
+                    users.put(rs.getString("email"),new Utilizador(rs.getString("nome"),rs.getString("email"),rs.getString("pass")));
                 }
             }
         } catch (SQLException e) {

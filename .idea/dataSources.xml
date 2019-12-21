@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="DBdss@localhost" uuid="851cbc65-d089-4853-b2ab-cde61a9374ab">
+    <data-source source="LOCAL" name="dbdss@localhost" uuid="73d8ad58-8fe7-4e0f-8eeb-9fba6cbb18ff">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://localhost:3306/DBdss</jdbc-url>
+      <jdbc-url>jdbc:mysql://localhost:3306/dbdss</jdbc-url>
+      <driver-properties>
+        <property name="serverTimezone" value="UTC" />
+      </driver-properties>
     </data-source>
   </component>
 </project>

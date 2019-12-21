@@ -65,7 +65,7 @@ public class MediaDAO {
                 PreparedStatement pStm = con.prepareStatement("select * from Utilizador");
                 ResultSet rs = pStm.executeQuery();
                 while (rs.next()) {
-                    medias.add(new Media(rs.getInt("idMedia"), rs.getString("nome"), rs.getString("cat"), rs.getString("link"), rs.getString("artista"), rs.getInt("biblioteca")));
+                    medias.add(new Media(rs.getInt("idMedia"), rs.getString("nome"), rs.getString("link"), rs.getString("artista"), rs.getInt("biblioteca")));
                 }
             }
         } catch (SQLException e) {

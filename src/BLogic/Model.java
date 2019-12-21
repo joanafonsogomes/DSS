@@ -2,48 +2,88 @@ package BLogic;
 
 import DAO.*;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class Model {
 
-    UtilizadorDAO userDAO;
+    UtilizadorDAO userDAO=new UtilizadorDAO();
     BibliotecaDAO biblioDAO;
     AdministradorDAO adminDAO;
     PlaylistDAO playlistDAO;
     MediaDAO mediaDAO;
-    List<Playlist> p;
-    List<Utilizador> u;
-
-    public List<Playlist> getP() {
-        return p;
-    }
-
-    public void setP(List<Playlist> p) {
-        this.p = p;
-    }
-
-    public List<Utilizador> getU() {
-        return u;
-    }
+    HashMap<String,Utilizador> listu ;
+    HashMap<Integer,Playlist> lPlaylist;
 
     public Model() {
         UtilizadorDAO userDAO = new UtilizadorDAO();
-        u=userDAO.getAll();
+        listu= userDAO.getAll();
+
         BibliotecaDAO biblioDAO = new BibliotecaDAO();
-        biblioDAO.getAll();
+        List<Biblioteca>lBilio=biblioDAO.getAll();
+
         AdministradorDAO adminDAO = new AdministradorDAO();
-        adminDAO.getAll();
+        List<Administrador>lAdmin= adminDAO.getAll();
+
         PlaylistDAO playlistDAO = new PlaylistDAO();
-       p= playlistDAO.getAll();
+        lPlaylist =playlistDAO.getAll();
+
         MediaDAO mediaDAO = new MediaDAO();
-        mediaDAO.getAll();
+        //List<Media> lMedia=mediaDAO.getAll();
     }
 
+    public Utilizador getUser(String email){
+        Utilizador u= listu.get(email);
+        return u;
+    }
+    public Playlist getPlaylist(String email){
+        System.out.print(email);
+        Playlist ppp = userDAO.get("tiaravalley@gmail.com").getListaPlaylists().get(1);
+        PlaylistDAO pd=new PlaylistDAO();
+        Playlist c = pd.get(1);
+        System.out.println(c.getListaMediaPlaylist().size());
+        return ppp;
+    }
     public Utilizador entraUtilizador(String email, String pass) {
-        Utilizador u = userDAO.get(email);
-        if (u != null && u.getPass().equals(pass)) {
-            return u;
-        } else return null;
+
+        if (listu.containsKey(email)){
+           if(listu.get(email).getNome().equals(pass)) {
+               Utilizador u= listu.get(email);
+               return u;
+           }
+           else return null;
+        }
+        else return null;
+    }
+
+    public Playlist playlistRespetiva(String email, int playlist){
+        Playlist nov = new Playlist();
+        return null;
+    }
+
+    public String[] buscaPlaylist(String email){
+        Utilizador u= listu.get(email);
+        HashMap<Integer, Playlist> m= u.getListaPlaylists();
+        String[] dev =  new String[m.size()];
+        int j=0;
+        for(Playlist p: m.values()){
+            dev[j]=p.getNome();
+            j++;
+        }
+        return dev;
+    }
+
+    public String[] buscaMedia(String email){
+        Utilizador u= listu.get(email);
+        HashMap<Integer, Media> m= u.getListaMediaUtilizadores();
+        String[] dev =  new String[m.size()];
+        int j=0;
+        for(Media p: m.values()){
+            dev[j]=p.getNome();
+            j++;
+        }
+        return dev;
     }
 
     public void upload(Media s,String user){
@@ -55,7 +95,7 @@ public class Model {
         }
         else if(!u.getListaMediaUtilizadores().containsKey(s.getIdMedia())) userDAO.saveMedia(m.getIdMedia(),user);
     }
-    /*
+
     public void alteraCategoria(Integer media, String novCategoria, String email){
         Utilizador user = userDAO.get(email);
         Media med = mediaDAO.get(media);
@@ -65,15 +105,12 @@ public class Model {
         }
     }
 
-     */
-
 
 
     public void reproduzir(Integer idmedia){
         Media media = mediaDAO.get(idmedia);
         //metodo de reprodução
     }
-
 
 
 

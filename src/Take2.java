@@ -30,7 +30,7 @@ import org.apache.tika.sax.BodyContentHandler;*/
 public class Take2 extends javax.swing.JFrame {
 
 
-    Model model = new Model();
+    Model model=new Model();
     private int idPlaylistAtual = -1;
 
     private int idMediaAtual = -1;
@@ -56,7 +56,7 @@ public class Take2 extends javax.swing.JFrame {
     String[] strarray = newList.toArray(new String[0]);
     */
 
-    private String[] playlistArray = {"musica1 nome","musica2 nome","musica3 nome"};
+    private String[] playlistArray = {"margarida"};
     private String[] musicasArray = {"musica1 nome","musica2 nome","musica3 nome"};
 
     private Player playerAtual;
@@ -673,7 +673,6 @@ public class Take2 extends javax.swing.JFrame {
             Utilizador user = model.entraUtilizador(emailText,passText);
 
             if(user!=null){
-              //  userAtual=model.getUser(emailText);
                 this.idUtilizadorAtual = emailText;
                 this.playlistAtual=model.getPlaylist(idUtilizadorAtual);
                 this.playlistArray = model.buscaPlaylist(emailText);

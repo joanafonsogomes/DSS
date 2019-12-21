@@ -9,7 +9,7 @@ public class Connect {
     private static final String USERNAME = "root";
     private static final String PASSWORD = "123456789";
     private static final String URL = "localhost";
-    private static final String SCHEMA = "DBdss";
+    private static final String SCHEMA = "dbdss";
 
     /**
      * Only required once

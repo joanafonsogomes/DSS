@@ -33,7 +33,7 @@ public class Media {
 
     }
 
-    public Media(int idMedia, String artista) {
+    public Media(int idMedia, String nome, String link, String artista, int biblioteca) {
         this.idMedia = idMedia++;
         this.nome = "";
         this.cat = "";
@@ -57,7 +57,7 @@ public class Media {
         this.artista = outraMedia.getArtista();
     }
 
-    public void guardaMediaBD (int idMedia,String nome ,String cat,String link, String artista,int b){
+    public void guardaMediaBD (int idMedia,String nome ,String link, String artista,int b){
         this.idMedia = idMedia;
         this.nome= nome;
         this.cat= cat; //clone
