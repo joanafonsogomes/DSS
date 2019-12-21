@@ -37,7 +37,7 @@ public class BibliotecaDAO{
                     idBiblioteca=rs.getInt("idBiblioteca");
                     nomeB = rs.getString("nome");
                 }
-                PreparedStatement pStm3 = con.prepareStatement("select m.idMedia, m.nome, m.cat,m.artista,m.link from Media m where idBiblioteca=? and idBiblioteca=m.biblioteca");
+                PreparedStatement pStm3 = con.prepareStatement("select m.idMedia, m.nome, u.cat,m.artista,m.link from Media m, Utilizador_has_Media u where idBiblioteca=? and idBiblioteca=m.biblioteca and m.idMedia=u.idMedia");
                 pStm3.setInt(1,id);
                 ResultSet rs3 = pStm3.executeQuery();
                 HashMap<Integer, Media> map2 = new HashMap<>();
@@ -128,6 +128,8 @@ public class BibliotecaDAO{
             Connect.close(con);
         }
     }
+
+
 
 }
 

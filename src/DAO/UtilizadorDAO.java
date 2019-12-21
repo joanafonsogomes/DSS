@@ -51,7 +51,7 @@ public class UtilizadorDAO{
                     map.put(idPlayList,p);
                  //   rs2.next();
                 }
-                PreparedStatement pStm3 = con.prepareStatement("select m.idMedia, m.nome, m.cat,m.artista,m.link from Media m, Utilizador_has_Media u where email=? and u.email=email and u.idMedia=m.idMedia");
+                PreparedStatement pStm3 = con.prepareStatement("select m.idMedia, m.nome, u.cat,m.artista,m.link from Media m, Utilizador_has_Media u where email=? and u.email=email and u.idMedia=m.idMedia");
                 pStm3.setString(1,email);
                 ResultSet rs3 = pStm3.executeQuery();
                 HashMap<Integer, Media> map2 = new HashMap<>();
@@ -108,6 +108,24 @@ public class UtilizadorDAO{
                 pStm.setString(2, user.getEmail());
                 pStm.setString(3, user.getPass());
                 pStm.setString(4, admin.getEmail());
+                pStm.execute();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            Connect.close(con);
+        }
+
+    }
+
+    public void alteraCategoria(int m,String u, String categoria){
+        try {
+            con = connect();
+            if(con != null) {
+                PreparedStatement pStm = con.prepareStatement("update Utilizador_has_Media set cat=? where idMedia=? and email=?");
+                pStm.setString(1,categoria);
+                pStm.setInt(2,m);
+                pStm.setString(3,u);
                 pStm.execute();
             }
         } catch (SQLException e) {

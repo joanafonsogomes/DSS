@@ -2,6 +2,8 @@ package BLogic;
 
 import DAO.*;
 
+import java.util.List;
+
 public class Model {
 
     UtilizadorDAO userDAO;
@@ -9,16 +11,30 @@ public class Model {
     AdministradorDAO adminDAO;
     PlaylistDAO playlistDAO;
     MediaDAO mediaDAO;
+    List<Playlist> p;
+    List<Utilizador> u;
+
+    public List<Playlist> getP() {
+        return p;
+    }
+
+    public void setP(List<Playlist> p) {
+        this.p = p;
+    }
+
+    public List<Utilizador> getU() {
+        return u;
+    }
 
     public Model() {
         UtilizadorDAO userDAO = new UtilizadorDAO();
-        userDAO.getAll();
+        u=userDAO.getAll();
         BibliotecaDAO biblioDAO = new BibliotecaDAO();
         biblioDAO.getAll();
         AdministradorDAO adminDAO = new AdministradorDAO();
         adminDAO.getAll();
         PlaylistDAO playlistDAO = new PlaylistDAO();
-        playlistDAO.getAll();
+       p= playlistDAO.getAll();
         MediaDAO mediaDAO = new MediaDAO();
         mediaDAO.getAll();
     }
@@ -39,7 +55,7 @@ public class Model {
         }
         else if(!u.getListaMediaUtilizadores().containsKey(s.getIdMedia())) userDAO.saveMedia(m.getIdMedia(),user);
     }
-
+    /*
     public void alteraCategoria(Integer media, String novCategoria, String email){
         Utilizador user = userDAO.get(email);
         Media med = mediaDAO.get(media);
@@ -48,6 +64,8 @@ public class Model {
            mediaDAO.save(med,2);
         }
     }
+
+     */
 
 
 

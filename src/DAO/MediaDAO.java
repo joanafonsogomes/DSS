@@ -13,7 +13,7 @@ import java.util.*;
 
 import static DAO.Connect.connect;
 
-public class MediaDAO{
+public class MediaDAO {
 
     private Connection con;
 
@@ -25,49 +25,47 @@ public class MediaDAO{
         }
     }
 
-    public Media get(int id){
+    public Media get(int id) {
         try {
             con = connect();
             if (con != null) {
-                PreparedStatement pStm = con.prepareStatement("select * from Media where idMedia=?");
+                PreparedStatement pStm = con.prepareStatement("select m.idMedia, m.nome, u.cat,m.artista,m.link from Media m, Utilizador_has_Media u where idMedia=? and u.idMedia = idMedia");
                 pStm.setInt(1, id);
                 ResultSet rs = pStm.executeQuery();
-                int idMedia=0;
-                String nome=null;
-                String cat=null;
-                String link=null;
-                String artista=null;
-                int biblioteca=0;
+                int idMedia = 0;
+                String nome = null;
+                String cat = null;
+                String link = null;
+                String artista = null;
+                int biblioteca = 0;
                 if (rs.next()) {
                     idMedia = rs.getInt("idMedia");
                     nome = rs.getString("nome");
                     cat = rs.getString("cat");
                     link = rs.getString("nome");
                     artista = rs.getString("artista");
-                    biblioteca=rs.getInt("biblioteca");
+                    biblioteca = rs.getInt("biblioteca");
                 }
-                return new Media(idMedia,nome,cat,link,artista,biblioteca);
+                return new Media(idMedia, nome, cat, link, artista, biblioteca);
             }
-        }
-        catch (SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
-        }
-        finally{
+        } finally {
             Connect.close(con);
         }
 
         return null;
     }
 
-    public List<Media> getAll () {
+    public List<Media> getAll() {
         List<Media> medias = new ArrayList<>();
         try {
             con = connect();
-            if(con != null) {
+            if (con != null) {
                 PreparedStatement pStm = con.prepareStatement("select * from Utilizador");
                 ResultSet rs = pStm.executeQuery();
-                while(rs.next()) {
-                    medias.add(new Media(rs.getInt("idMedia"),rs.getString("nome"),rs.getString("cat"),rs.getString("link"),rs.getString("artista"),rs.getInt("biblioteca")));
+                while (rs.next()) {
+                    medias.add(new Media(rs.getInt("idMedia"), rs.getString("nome"), rs.getString("cat"), rs.getString("link"), rs.getString("artista"), rs.getInt("biblioteca")));
                 }
             }
         } catch (SQLException e) {
@@ -79,17 +77,16 @@ public class MediaDAO{
     }
 
 
-    public void save (Media t,int b) {
+    public void save(Media t, int b) {
         try {
             con = connect();
-            if(con != null) {
-                PreparedStatement pStm = con.prepareStatement("insert into Media(idMedia,nome,cat,link,artista,biblioteca) values (?,?,?,?,?,?) ");
+            if (con != null) {
+                PreparedStatement pStm = con.prepareStatement("insert into Media(idMedia,nome,link,artista,biblioteca) values (?,?,?,?,?,?) ");
                 pStm.setInt(1, t.getIdMedia());
                 pStm.setString(2, t.getNome());
-                pStm.setString(3, t.getCat());
-                pStm.setString(4, t.getLink());
-                pStm.setString(5, t.getArtista());
-                pStm.setInt(6, b);
+                pStm.setString(3, t.getLink());
+                pStm.setString(4, t.getArtista());
+                pStm.setInt(5, b);
                 pStm.execute();
             }
         } catch (SQLException e) {
@@ -98,6 +95,27 @@ public class MediaDAO{
             Connect.close(con);
         }
     }
+
+    public void saveOne(String em,int i, String catss) {
+        try {
+
+            if (con != null) {
+                PreparedStatement pStm = con.prepareStatement("insert into Utilizador_has_Media(email,idMedia,cat) values (?,?,?) ");
+                pStm.setString(1, em);
+                pStm.setInt(2, i);
+                pStm.setString(3, catss);
+                pStm.execute();
+            }
+        }catch(SQLException e)
+    {
+        e.printStackTrace();
+    } finally
+
+    {
+        Connect.close(con);
+    }
+
+}
 
     public int size() {
         try {
@@ -127,6 +145,15 @@ public class MediaDAO{
             Connect.close(con);
         }
     }
+
+    /*
+    public static void main(String[] args) {
+        MediaDAO m = new MediaDAO();
+        m.saveOne("coconutreplay@gmail.com",10,"Keep");
+        System.out.println("done");
+    }
+
+     */
 
 }
 

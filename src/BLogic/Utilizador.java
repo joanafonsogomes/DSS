@@ -27,7 +27,7 @@ public class Utilizador {
         this.email = "";
         this.pass = "";
         this.listaMediaUtilizadores = new HashMap<Integer, Media>();
-        (new UtilizadorDAO()).save(this,admin);
+        //(new UtilizadorDAO()).save(this,admin);
     }
 
     public Utilizador(HashMap<Integer, Playlist> listaPlaylists, String nome, String email, String pass, HashMap<Integer, Media>listaMediaUtilizadores){
@@ -139,7 +139,6 @@ public class Utilizador {
     public void addPlaylist(List<Media> lm) {
         Playlist p = new Playlist();
             for (Media m : lm) {
-                p.getListaMediaPlaylist().put(m.getIdMedia(), m.clone());
             }
         throw new UnsupportedOperationException();
     }

@@ -47,7 +47,6 @@ public class Media {
         this.cat= cat; //clone
         this.link = link;
         this.artista = artista;
-        (new MediaDAO()).save(this,b);
     }
 
     public Media(Media outraMedia,int b) {
@@ -56,6 +55,14 @@ public class Media {
         this.cat = outraMedia.getCat();
         this.link = outraMedia.getLink();
         this.artista = outraMedia.getArtista();
+    }
+
+    public void guardaMediaBD (int idMedia,String nome ,String cat,String link, String artista,int b){
+        this.idMedia = idMedia;
+        this.nome= nome;
+        this.cat= cat; //clone
+        this.link = link;
+        this.artista = artista;
         (new MediaDAO()).save(this,b);
     }
 
@@ -157,6 +164,6 @@ public class Media {
      *
      * Clone
      */
-   public Media clone() { return new Media(this,1); }
+   //public Media clone() { return new Media(this,1); }
 
 }
