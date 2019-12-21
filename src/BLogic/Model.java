@@ -42,7 +42,7 @@ public class Model {
         Playlist ppp = userDAO.get("tiaravalley@gmail.com").getListaPlaylists().get(1);
         PlaylistDAO pd=new PlaylistDAO();
         Playlist c = pd.get(1);
-        System.out.println(c.getListaMediaPlaylist().size());
+//        System.out.println(ppp.getListaMediaPlaylist().size());
         return ppp;
     }
     public Utilizador entraUtilizador(String email, String pass) {

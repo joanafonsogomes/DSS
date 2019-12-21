@@ -41,7 +41,7 @@ public class PlaylistDAO{
                     idPlaylist=rs.getInt("idPlaylist");
                     nomeP = rs.getString("nome");
                 }
-                PreparedStatement pStm2 = con.prepareStatement("select m.idMedia, m.nome, u.cat,m.artista,m.link from Media m, Playlist_has_Media p, Utilizador_has_Media u where idPlaylist=? and idPlaylist=p.idPlaylist and p.idMedia = m.idMedia and u.idMedia = m.idMedia");
+                PreparedStatement pStm2 = con.prepareStatement("select m.idMedia, m.nome, u.cat,m.artista,m.link ,m.biblioteca from Media m, Playlist_has_Media p, Utilizador_has_Media u where idPlaylist=? and idPlaylist=p.idPlaylist and p.idMedia = m.idMedia and u.idMedia = m.idMedia");
                 pStm2.setInt(1, id);
                 ResultSet rs2 = pStm2.executeQuery();
                 HashMap<Integer, Media> map = new HashMap<>();

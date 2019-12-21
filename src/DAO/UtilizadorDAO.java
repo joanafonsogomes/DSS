@@ -51,7 +51,7 @@ public class UtilizadorDAO{
                     map.put(idPlayList,p);
                  //   rs2.next();
                 }
-                PreparedStatement pStm3 = con.prepareStatement("select m.idMedia, m.nome, u.cat,m.artista,m.link from Media m, Utilizador_has_Media u where email=? and u.email=email and u.idMedia=m.idMedia");
+                PreparedStatement pStm3 = con.prepareStatement("select m.idMedia, m.nome, u.cat,m.artista,m.biblioteca,m.link from Media m, Utilizador_has_Media u where email=? and u.email=email and u.idMedia=m.idMedia");
                 pStm3.setString(1,email);
                 ResultSet rs3 = pStm3.executeQuery();
                 HashMap<Integer, Media> map2 = new HashMap<>();
@@ -60,9 +60,9 @@ public class UtilizadorDAO{
                     String nome = rs3.getString("nome");
                     String artista = rs3.getString("artista");
                     String cat = rs3.getString("cat");
+                    int biblioteca=rs3.getInt("biblioteca");
                     String link = rs3.getString("link");
-                    int biblioteca=rs3.getInt("bibliotca");
-                    Media media = new Media(idMedia, nome, cat, link, artista,biblioteca);
+                    Media media = new Media(idMedia, nome, link, artista,biblioteca);
                     map2.put(idMedia, media);
                 }
                 return new Utilizador(map,user,e,pass,map2);
