@@ -28,16 +28,22 @@ public class Teste {
         MediaDAO mediaDAO = new MediaDAO();
         List<Media> lMedia=mediaDAO.getAll();
 
-        Media m = userDAO.get("tiaravalley@gmail.com").getListaPlaylists().get(1).getListaMediaPlaylist().get(2);
+//        Media m = userDAO.get("tiaravalley@gmail.com").getListaPlaylists().get(1).getListaMediaPlaylist().get(2);
         //Utilizador u = userDAO.get("tiaravalley@gmail.com");
 
         //Playlist p = userDAO.get("tiaravalley@gmail.com").getListaPlaylists().get(1);
         //Playlist c = playlistDAO.get(1);
-        Playlist p= model.getPlaylist("tiaravalley@gmail.com").get(0);
-        int i =model.getPlaylist("coconutreplay@gmail.com").size();
+        //Playlist p= model.getPlaylist("tiaravalley@gmail.com").get(0);
+      //  int i =model.getPlaylist("coconutreplay@gmail.com").size();
 
-        model.getPlaylist("coconutreplay@gmail.com").get(0).getNome();
-        //System.out.println(i);
+     // String g= model.getPlaylist("coconutreplay@gmail.com").get(0).getListaMediaPlaylist().get(4).getNome();
+      //System.out.println(g);
+    Media m=mediaDAO.get(3,"tiaravalley@gmail.com");
+    System.out.println(m.getCat());
+
+
+m= mediaDAO.get(3,"tiaravalley@gmail.com");
+        System.out.println(m.getCat());
         }
 
     }

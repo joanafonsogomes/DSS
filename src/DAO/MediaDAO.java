@@ -25,12 +25,13 @@ public class MediaDAO {
         }
     }
 
-    public Media get(int id) {
+    public Media get(int id,String email) {
         try {
             con = connect();
             if (con != null) {
-                PreparedStatement pStm = con.prepareStatement("select m.idMedia, m.nome, u.cat,m.artista,m.link from Media m, Utilizador_has_Media u where idMedia=? and u.idMedia = idMedia");
+                PreparedStatement pStm = con.prepareStatement("select m.idMedia, m.nome, u.cat,m.artista,m.link,m.biblioteca from Media m, Utilizador_has_Media u,utilizador ut  where m.idMedia=? and ut.email=? and u.idMedia = m.idMedia and u.email=ut.email");
                 pStm.setInt(1, id);
+                pStm.setString(2,email);
                 ResultSet rs = pStm.executeQuery();
                 int idMedia = 0;
                 String nome = null;
@@ -47,6 +48,37 @@ public class MediaDAO {
                     biblioteca = rs.getInt("biblioteca");
                 }
                 return new Media(idMedia, nome, cat, link, artista, biblioteca);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            Connect.close(con);
+        }
+
+        return null;
+    }
+    public Media getNome(String nome) {
+        try {
+            con = connect();
+            if (con != null) {
+                PreparedStatement pStm = con.prepareStatement("select m.idMedia, m.nome, u.cat,m.artista,m.link ,m.biblioteca from Media m, Utilizador_has_Media u where m.idMedia=u.idMedia and m.nome=? and u.idMedia = m.idMedia");
+                pStm.setString(1,nome);
+                ResultSet rs = pStm.executeQuery();
+                int idMedia = 0;
+                String nomeM = null;
+                String cat = null;
+                String link = null;
+                String artista = null;
+                int biblioteca = 0;
+                if (rs.next()) {
+                    idMedia = rs.getInt("idMedia");
+                    nomeM = rs.getString("nome");
+                    cat = rs.getString("cat");
+                    link = rs.getString("nome");
+                    artista = rs.getString("artista");
+                    biblioteca = rs.getInt("biblioteca");
+                }
+                return new Media(idMedia, nomeM, cat, link, artista, biblioteca);
             }
         } catch (SQLException e) {
             e.printStackTrace();

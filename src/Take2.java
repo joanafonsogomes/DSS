@@ -72,7 +72,6 @@ public class Take2 extends javax.swing.JFrame {
 
     private Vector listData = new Vector();
 
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -107,6 +106,9 @@ public class Take2 extends javax.swing.JFrame {
         playVideo = new javax.swing.JButton();
         pauseVideo = new javax.swing.JButton();
         stopVideo = new javax.swing.JButton();
+        altCategoria = new javax.swing.JFrame();
+        jLabel6 = new javax.swing.JLabel();
+        catNova = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         playingGif1 = new javax.swing.JLabel();
         play = new javax.swing.JButton();
@@ -117,13 +119,12 @@ public class Take2 extends javax.swing.JFrame {
         mediaList = new javax.swing.JList<String>();
         jScrollPane2 = new javax.swing.JScrollPane();
         playlistList = new javax.swing.JList<String>();
-        termSessao = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        termSessao = new javax.swing.JButton();
         nomeMusica = new javax.swing.JLabel();
         catName = new javax.swing.JLabel();
         artName = new javax.swing.JLabel();
         uploadButton = new javax.swing.JButton();
-        lowBar = new javax.swing.JLabel();
+        altCat = new javax.swing.JButton();
 
         jMenuItem1.setText("jMenuItem1");
 
@@ -426,14 +427,50 @@ public class Take2 extends javax.swing.JFrame {
                                 .addGap(18, 18, 18))
         );
 
+        altCategoria.setAlwaysOnTop(true);
+        altCategoria.setLocation(new java.awt.Point(580, 270));
+        altCategoria.setMinimumSize(new java.awt.Dimension(350, 250));
+        altCategoria.setPreferredSize(new java.awt.Dimension(350, 250));
+
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/catChange2.png"))); // NOI18N
+
+        catNova.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                catNovaActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout altCategoriaLayout = new javax.swing.GroupLayout(altCategoria.getContentPane());
+        altCategoria.getContentPane().setLayout(altCategoriaLayout);
+        altCategoriaLayout.setHorizontalGroup(
+                altCategoriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(altCategoriaLayout.createSequentialGroup()
+                                .addGap(14, 14, 14)
+                                .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 354, Short.MAX_VALUE)
+                                .addContainerGap())
+                        .addGroup(altCategoriaLayout.createSequentialGroup()
+                                .addGap(72, 72, 72)
+                                .addComponent(catNova, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        altCategoriaLayout.setVerticalGroup(
+                altCategoriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(altCategoriaLayout.createSequentialGroup()
+                                .addGap(23, 23, 23)
+                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(33, 33, 33)
+                                .addComponent(catNova, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(147, Short.MAX_VALUE))
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("MediaCenter");
         setAlwaysOnTop(true);
         setAutoRequestFocus(false);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setLocation(new java.awt.Point(410, 200));
-        setMinimumSize(new java.awt.Dimension(750, 366));
-        setPreferredSize(new java.awt.Dimension(750, 366));
+        setMinimumSize(new java.awt.Dimension(750, 400));
+        setPreferredSize(new java.awt.Dimension(750, 400));
         setResizable(false);
 
         jLabel1.setFont(new java.awt.Font("CMU Bright", 1, 36)); // NOI18N
@@ -524,80 +561,81 @@ public class Take2 extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(playlistList);
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/termSessaoButton.png"))); // NOI18N
-        jButton2.setBorderPainted(false);
-        jButton2.setContentAreaFilled(false);
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        termSessao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/termSessaoButton.png"))); // NOI18N
+        termSessao.setBorderPainted(false);
+        termSessao.setContentAreaFilled(false);
+        termSessao.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        termSessao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                termSessaoActionPerformed(evt);
             }
         });
 
         nomeMusica.setFont(new java.awt.Font("CMU Bright", 1, 18)); // NOI18N
-        nomeMusica.setText(" ");
-
-        catName.setText(" ");
-
-        artName.setText(" ");
+        nomeMusica.setToolTipText("");
+        nomeMusica.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         uploadButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/upload.png"))); // NOI18N
         uploadButton.setBorderPainted(false);
         uploadButton.setContentAreaFilled(false);
+        uploadButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         uploadButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 uploadButtonActionPerformed(evt);
             }
         });
 
-        lowBar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lowBar.png"))); // NOI18N
+        altCat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/altCat.png"))); // NOI18N
+        altCat.setBorderPainted(false);
+        altCat.setContentAreaFilled(false);
+        altCat.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        altCat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                altCatActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(layout.createSequentialGroup()
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                                         .addGroup(layout.createSequentialGroup()
-                                                                .addContainerGap(57, Short.MAX_VALUE)
                                                                 .addComponent(play, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                .addComponent(pause, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                .addComponent(next, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                                        .addComponent(lowBar)
-                                                                        .addComponent(playingGif1, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                                        .addGroup(layout.createSequentialGroup()
-                                                                .addGap(32, 32, 32)
-                                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                        .addComponent(uploadButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                                         .addGroup(layout.createSequentialGroup()
-                                                                                .addGap(6, 6, 6)
-                                                                                .addComponent(catName))
-                                                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                                                .addComponent(nomeMusica)
-                                                                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                                                                        .addGap(6, 6, 6)
-                                                                                        .addComponent(artName))))
-                                                                .addGap(131, 131, 131)))
+                                                                                .addComponent(pause, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                                                .addComponent(next, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                                        .addComponent(uploadButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                                .addGap(22, 22, 22))
+                                                        .addGroup(layout.createSequentialGroup()
+                                                                .addComponent(altCat)
+                                                                .addGap(18, 18, 18)))
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                         .addGroup(layout.createSequentialGroup()
-                                                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                                        .addComponent(catName)
+                                                                        .addComponent(nomeMusica)
+                                                                        .addComponent(artName))
+                                                                .addGap(54, 54, 54))
                                                         .addGroup(layout.createSequentialGroup()
-                                                                .addGap(49, 49, 49)
-                                                                .addComponent(termSessao)))
-                                                .addGap(662, 662, 662)
+                                                                .addComponent(playingGif1, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(870, 870, 870)
                                                 .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGroup(layout.createSequentialGroup()
-                                                .addGap(161, 161, 161)
+                                                .addComponent(termSessao, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(61, 61, 61)
                                                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addContainerGap())
         );
@@ -605,54 +643,42 @@ public class Take2 extends javax.swing.JFrame {
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
                                 .addContainerGap()
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(termSessao))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(layout.createSequentialGroup()
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addGroup(layout.createSequentialGroup()
-                                                                .addGap(6, 6, 6)
-                                                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                        .addGroup(layout.createSequentialGroup()
-                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(termSessao))
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                         .addGroup(layout.createSequentialGroup()
-                                                .addGap(14, 14, 14)
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addGroup(layout.createSequentialGroup()
+                                                                .addComponent(nomeMusica)
+                                                                .addGap(18, 18, 18)
+                                                                .addComponent(catName)
+                                                                .addGap(29, 29, 29)
+                                                                .addComponent(artName))
                                                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                                                .addGap(0, 0, Short.MAX_VALUE)
-                                                                .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                                        .addGroup(layout.createSequentialGroup()
-                                                                                .addComponent(nomeMusica)
-                                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                                                        .addGroup(layout.createSequentialGroup()
-                                                                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                                                                        .addGroup(layout.createSequentialGroup()
-                                                                                                                .addComponent(catName)
-                                                                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                                                                                .addComponent(artName))
-                                                                                                        .addGroup(layout.createSequentialGroup()
-                                                                                                                .addGap(0, 0, Short.MAX_VALUE)
-                                                                                                                .addComponent(playingGif1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                                                                                .addGap(10, 10, 10))
-                                                                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                                                                                .addGap(0, 0, Short.MAX_VALUE)
-                                                                                                .addComponent(lowBar))))
-                                                                        .addGroup(layout.createSequentialGroup()
-                                                                                .addComponent(jButton2)
-                                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                                .addComponent(uploadButton, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
-                                                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                                                        .addComponent(pause, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                                        .addComponent(next, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                                        .addComponent(play, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                                                .addGap(26, 26, 26)))))
-                                .addContainerGap(32, Short.MAX_VALUE))
+                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                                .addComponent(uploadButton, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                                .addComponent(altCat)
+                                                                .addGap(5, 5, 5)))
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                                .addComponent(jLayeredPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                                                .addComponent(next, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                                .addComponent(pause, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                                .addComponent(play, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                                        .addGap(95, 95, 95)))
+                                                        .addGroup(layout.createSequentialGroup()
+                                                                .addGap(22, 22, 22)
+                                                                .addComponent(playingGif1, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -713,7 +739,6 @@ public class Take2 extends javax.swing.JFrame {
     private void pauseActionPerformed(java.awt.event.ActionEvent evt) {
         pauseMedia();
         playingGif1.setVisible(false);
-        lowBar.setVisible(true);
     }
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {
@@ -785,6 +810,7 @@ public class Take2 extends javax.swing.JFrame {
 
             if(user!=null){
                 loginWindow.setVisible(false);
+                this.listData.removeAllElements();
                 this.userAtual=model.getUser(emailText);
                 this.idUtilizadorAtual = emailText;
                 int count1;
@@ -821,7 +847,7 @@ public class Take2 extends javax.swing.JFrame {
 
         int count2;
         int sizeOf = this.playlistAtual.getListaMediaPlaylist().size();
-      //  System.out.println("ola, o tamanho é " + sizeOf);
+        //  System.out.println("ola, o tamanho é " + sizeOf);
         for(count2=0 ; count2 < sizeOf; count2++){
             String nomeMusica = this.playlistAtual.getListaMediaPlaylist().get(count2).getNome();
             System.out.println(nomeMusica);
@@ -842,6 +868,7 @@ public class Take2 extends javax.swing.JFrame {
         int index = mediaList.locationToIndex(evt.getPoint());
         //System.out.println(index);
         this.playlistPos = index;
+        altCat.setVisible(true);
         if(this.clip!=null){
             String linkMedia = this.playlistAtual.getListaMediaPlaylist().get(this.playlistPos).getLink();
             //this.musicaAtual = "Olaaaaa";
@@ -869,40 +896,66 @@ public class Take2 extends javax.swing.JFrame {
 
             playMedia(linkMedia);
         }
-        /*
-        this.playlistAtual = this..get(index);
-        //this.playlistAtual = user1.getListaPlaylists().get(1);
-        //System.out.println(this.playlistAtual.getNome());
-        //this.musicList =
-        musicList.setVisible(true);
-        playlistList.setVisible(false);*/
     }
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {
+    private void termSessaoActionPerformed(java.awt.event.ActionEvent evt) {
         this.setVisible(false);
         initialWindow.setVisible(true);
+        altCat.setVisible(false);
         //por o utilizador a null
         this.clip.stop();
     }
 
     private void uploadButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
+
+    }
+
+    private void altCatActionPerformed(java.awt.event.ActionEvent evt) {
+        altCategoria.setVisible(true);
+    }
+
+    private void catNovaActionPerformed(java.awt.event.ActionEvent evt) {
+        String newCat = catNova.getText();
+        model.alteraCategoria(this.playlistAtual.getListaMediaPlaylist().get(this.playlistPos).getNome(),newCat,idUtilizadorAtual);
+        catName.setText(newCat);
+        this.lPlayList=model.getPlaylist(this.idUtilizadorAtual);
+
+        loginWindow.setVisible(false);
+        this.listData.removeAllElements();
+        this.userAtual=model.getUser(idUtilizadorAtual);
+        int count1;
+        this.lPlayList=model.getPlaylist(idUtilizadorAtual);
+        int sizeOf = lPlayList.size();
+        //System.out.println(sizeOf);
+        for(count1=0 ; count1 < sizeOf ; count1++){
+            String n = lPlayList.get(count1).getNome();
+            //System.out.println(n);
+            this.listData.addElement(n);
+        }
+
+        playlistList.setListData(this.listData);
+
+
+        altCategoria.setVisible(false);
     }
 
     // Variables declaration - do not modify
+    private javax.swing.JButton altCat;
+    private javax.swing.JFrame altCategoria;
     private javax.swing.JLabel artName;
     private javax.swing.JButton backFromAdm;
     private javax.swing.JButton backFromLogin;
     private javax.swing.JLabel catName;
+    private javax.swing.JTextField catNova;
     private javax.swing.JLabel criar_conta_button;
     private javax.swing.JButton entrarComoConvidado;
     private javax.swing.JFrame initialWindow;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
@@ -911,7 +964,6 @@ public class Take2 extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JButton loginButton;
     private javax.swing.JDialog loginWindow;
-    private javax.swing.JLabel lowBar;
     private javax.swing.JList<String> mediaList;
     private javax.swing.JFrame menuAdm;
     private javax.swing.JButton next;
@@ -926,7 +978,7 @@ public class Take2 extends javax.swing.JFrame {
     private javax.swing.JLabel playingGif1;
     private javax.swing.JList<String> playlistList;
     private javax.swing.JButton stopVideo;
-    private javax.swing.JLabel termSessao;
+    private javax.swing.JButton termSessao;
     private javax.swing.JButton uploadButton;
     private javax.swing.JTextField userInput;
     private javax.swing.JLabel username_label;
@@ -1146,6 +1198,7 @@ public class Take2 extends javax.swing.JFrame {
 
         initialWindow.setVisible(true);
         playingGif1.setVisible(false);
+        altCat.setVisible(false);
 
 
     }

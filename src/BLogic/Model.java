@@ -38,18 +38,26 @@ public class Model {
         Utilizador u= listu.get(email);
         return u;
     }
-    public HashMap<Integer, Playlist> getPlaylist(String email){
+    public HashMap<Integer, Playlist> getPlaylist(String email) {
         HashMap<Integer, Playlist> lp = new HashMap<>();
         HashMap<Integer, Playlist> ppp = userDAO.get(email).getListaPlaylists();
-        int i=0,j=0;
+        int j = 0;
         for(Playlist p: ppp.values()){
-            for(Media m : p.getListaMediaPlaylist().values()) {
-                HashMap<Integer,Media> newM = new HashMap<>();
-                newM.put(i, m);
-                i++;
-            }
+            int i = 0;
+            HashMap<Integer, Media> newM = new HashMap<>();
+                for (Media m : p.getListaMediaPlaylist().values()) {
+                    newM.put(i, m);
+                    System.out.println(i);
+                    i++;
+                }
+            p.setListaMediaPlaylist(newM);
             lp.put(j,p);
             j++;
+        }
+        for(int p : lp.keySet()){
+            for(int m : lp.get(p).getListaMediaPlaylist().keySet() ){
+                System.out.println( p+ " "+ m+" "+lp.get(p).getListaMediaPlaylist().get(m).getNome());
+            }
         }
         return lp;
     }
@@ -94,35 +102,38 @@ public class Model {
         return dev;
     }
 
-    public void upload(Media s,String user){
+    public void upload(Media s,String user,String cat){
         Utilizador u= userDAO.get(user);
-        Media m = mediaDAO.get(s.getIdMedia());
+        Media m = mediaDAO.get(s.getIdMedia(),user);
         if(m!=null){
             Media newM = new Media(s,1);
-            userDAO.saveMedia(m.getIdMedia(),user);
+            mediaDAO.saveOne(user,m.getIdMedia(),cat);
         }
-        else if(!u.getListaMediaUtilizadores().containsKey(s.getIdMedia())) userDAO.saveMedia(m.getIdMedia(),user);
+        else if( !u.getListaMediaUtilizadores().containsKey(s.getIdMedia()) ) mediaDAO.saveOne(user,m.getIdMedia(),cat);
+    }
+    public Playlist getPlayl (String email, int pos){
+        return null;
+
     }
 
-    public void alteraCategoria(Integer media, String novCategoria, String email){
-        Utilizador user = userDAO.get(email);
-        Media med = mediaDAO.get(media);
-        if(user.getListaMediaUtilizadores().containsKey(med.getIdMedia())) {
-           Media inser = new Media(mediaDAO.size(),med.getNome(),novCategoria,med.getLink(),med.getArtista(),2);
-           mediaDAO.save(med,2);
+    public void alteraCategoria(String media, String novCategoria, String email){
+        MediaDAO m=new MediaDAO();
+        Media n=m.getNome(media);
+        MediaDAO m2=new MediaDAO();
+        Media mt = m2.get(n.getIdMedia(),email);
+        if(userDAO.get(email).getListaMediaUtilizadores().containsKey(mt.getIdMedia())) {
+           userDAO.alteraCategoria(n.getIdMedia(),email,novCategoria);
         }
     }
 
 
 
-    public void reproduzir(Integer idmedia){
-        Media media = mediaDAO.get(idmedia);
-        //metodo de reprodução
+
     }
 
 
 
 
 
-}
+
 
