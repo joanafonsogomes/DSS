@@ -32,7 +32,6 @@ public class Take2 extends javax.swing.JFrame {
 
     Model model=new Model();
     private int idPlaylistAtual = -1;
-
     private int idMediaAtual = -1;
     private String idUtilizadorAtual="";
     private Utilizador userAtual;
@@ -578,15 +577,15 @@ public class Take2 extends javax.swing.JFrame {
         this.clip.stop();
         this.clipTimePosition = 0;
         this.playlistPos++;
-        if(playlistPos <= 15){
+        if(playlistPos <= (this.playlistAtual.getListaMediaPlaylist().size())-1){
 
             String linkMedia = this.playlistAtual.getListaMediaPlaylist().get(this.playlistPos).getLink();
-            this.musicaAtual = this.playlistAtual.getListaMediaPlaylist().get(this.playlistPos).getNome();
+            //this.musicaAtual = this.playlistAtual.getListaMediaPlaylist().get(this.playlistPos).getNome();
             playMedia(linkMedia);
         }
         else{
             this.playlistPos = 0;
-            this.musicaAtual = "Olaaaaa";
+            //this.musicaAtual = "Olaaaaa";
             String linkMedia = this.playlistAtual.getListaMediaPlaylist().get(this.playlistPos).getLink();
             playMedia(linkMedia);
             //this.musicaAtual = this.playlist1.getListaMediaPlaylist().get(this.playlistPos).getNome();

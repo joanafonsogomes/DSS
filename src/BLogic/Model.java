@@ -2,6 +2,7 @@ package BLogic;
 
 import DAO.*;
 
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -40,10 +41,17 @@ public class Model {
     public Playlist getPlaylist(String email){
         System.out.print(email);
         Playlist ppp = userDAO.get("tiaravalley@gmail.com").getListaPlaylists().get(1);
-        PlaylistDAO pd=new PlaylistDAO();
-        Playlist c = pd.get(1);
+        HashMap<Integer,Media> newM = new HashMap<>();
+        int i=0;
+        for(Media m : ppp.getListaMediaPlaylist().values()){
+            newM.put(i,m);
+            i++;
+        }
+        Playlist newP = new Playlist(newM,ppp.getIdPlaylist(),ppp.getNome());
+
+
 //        System.out.println(ppp.getListaMediaPlaylist().size());
-        return ppp;
+        return newP;
     }
     public Utilizador entraUtilizador(String email, String pass) {
 
