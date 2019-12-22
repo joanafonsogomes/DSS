@@ -38,20 +38,20 @@ public class Model {
         Utilizador u= listu.get(email);
         return u;
     }
-    public Playlist getPlaylist(String email){
-        System.out.print(email);
-        Playlist ppp = userDAO.get("tiaravalley@gmail.com").getListaPlaylists().get(1);
-        HashMap<Integer,Media> newM = new HashMap<>();
-        int i=0;
-        for(Media m : ppp.getListaMediaPlaylist().values()){
-            newM.put(i,m);
-            i++;
+    public HashMap<Integer, Playlist> getPlaylist(String email){
+        HashMap<Integer, Playlist> lp = new HashMap<>();
+        HashMap<Integer, Playlist> ppp = userDAO.get(email).getListaPlaylists();
+        int i=0,j=0;
+        for(Playlist p: ppp.values()){
+            for(Media m : p.getListaMediaPlaylist().values()) {
+                HashMap<Integer,Media> newM = new HashMap<>();
+                newM.put(i, m);
+                i++;
+            }
+            lp.put(j,p);
+            j++;
         }
-        Playlist newP = new Playlist(newM,ppp.getIdPlaylist(),ppp.getNome());
-
-
-//        System.out.println(ppp.getListaMediaPlaylist().size());
-        return newP;
+        return lp;
     }
     public Utilizador entraUtilizador(String email, String pass) {
 
