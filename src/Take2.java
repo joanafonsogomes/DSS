@@ -40,10 +40,10 @@ import org.apache.tika.parser.mp4.MP4Parser;
 import org.apache.tika.sax.BodyContentHandler;*/
 
 public class Take2 extends javax.swing.JFrame {
-    Model model=new Model();
+    private Model model=new Model();
     private Clip clip;
     private long clipTimePosition = 0;
-
+    private HashMap<Integer,Playlist> lPlayList;
     //private Media m0, m1, m2, m3, m4, m5, m6, m7, m8, m9, m10, m11, m12, m13, m14, m15;
     //private Playlist playlist1;
     //private Utilizador user1;
@@ -788,11 +788,12 @@ public class Take2 extends javax.swing.JFrame {
                 this.userAtual=model.getUser(emailText);
                 this.idUtilizadorAtual = emailText;
                 int count1;
-                int sizeOf = model.getPlaylist(emailText).size();
-                System.out.println(sizeOf);
+                this.lPlayList=model.getPlaylist(emailText);
+                int sizeOf = lPlayList.size();
+                //System.out.println(sizeOf);
                 for(count1=0 ; count1 < sizeOf ; count1++){
-                    String n = model.getPlaylist(emailText).get(count1).getNome();
-                    System.out.println(n);
+                    String n = lPlayList.get(count1).getNome();
+                    //System.out.println(n);
                     this.listData.addElement(n);
                 }
 
@@ -813,16 +814,15 @@ public class Take2 extends javax.swing.JFrame {
     private void playlistListMouseClicked(java.awt.event.MouseEvent evt) {
         int index = playlistList.locationToIndex(evt.getPoint());
         //System.out.println(index);
-        int pos = index + 1;
-        this.playlistAtual = user1.getListaPlaylists().get(pos);
-
+        int pos = index ;
+        this.playlistAtual = lPlayList.get(pos);
 
         Vector listData2 = new Vector();
 
         int count2;
         int sizeOf = this.playlistAtual.getListaMediaPlaylist().size();
-        System.out.println("ola, o tamanho é " + sizeOf);
-        for(count2=0 ; count2 < sizeOf ; count2++){
+      //  System.out.println("ola, o tamanho é " + sizeOf);
+        for(count2=0 ; count2 < sizeOf; count2++){
             String nomeMusica = this.playlistAtual.getListaMediaPlaylist().get(count2).getNome();
             System.out.println(nomeMusica);
             listData2.addElement(nomeMusica);
@@ -939,6 +939,7 @@ public class Take2 extends javax.swing.JFrame {
      */
     public Take2() {
         /*TEST MEDIA, PLAYLIST AND USER*/
+        /*
         Media m0, m1, m2, m3, m4, m5, m6, m7, m8, m9, m10, m11, m12, m13, m14, m15 = new Media();
         m0 = new Media();
         m0.setIdMedia(0);
@@ -1122,7 +1123,7 @@ public class Take2 extends javax.swing.JFrame {
             j++;
         }*/
 
-        this.playlistAtual = playlist1;
+        //this.playlistAtual = playlist1;
 
         /*
         int count;
